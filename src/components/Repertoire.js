@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { ApplicationViews } from './ApplicationViews';
+import { ApplicationViews } from './AppViews';
 import { Navbar } from './nav/Navbar';
+import { Login } from './auth/Login';
+import { Register } from './auth/Register';
 
 export const Repertoire = () => (
   <>
