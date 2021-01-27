@@ -1,0 +1,29 @@
+.song-list {
+  border-spacing: 0;
+}
+
+.song-list__head {
+  font-family: var(--heading-font);
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--accent-text-color);
+  text-align: center;
+}
+
+.song-list__head th {
+  border-top: 3px solid var(--accent-text-color);
+  border-bottom: 3px solid var(--accent-text-color);
+}
+
+.song-list__body {
+  font-family: var(--body-font);
+}
+
+.song-list {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.song-list-item:nth-child(odd) {
+  background-color: var(--secondary-background-color);
+}

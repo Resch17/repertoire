@@ -15,9 +15,8 @@ export const SongList = () => {
 
   return (
     <>
-      <h2>Song List</h2>
-      <table>
-        <thead>
+      <table className="song-list">
+        <thead className="song-list__head">
           <tr>
             <th>Artist</th>
             <th>Song</th>
@@ -30,7 +29,7 @@ export const SongList = () => {
             <th>Added by:</th>
           </tr>
         </thead>
-        <tbody className="song-list">
+        <tbody className="song-list__body">
           {songs.map((s) => {
             const tuning = tunings.find((t) => t.id === s.tuningId);
             const user = users.find((u) => u.id === s.userId);
