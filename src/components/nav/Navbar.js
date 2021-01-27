@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { UserContext } from '../users/UserProvider';
 
 export const Navbar = (props) => {
+  const { users, getUsers } = useContext(UserContext);
+
+  useEffect(() => {
+    getUsers();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const userId = parseInt(localStorage.getItem('rep_user'));
+
+  const thisUser = users.find((u) => u.id === userId);
+
   const logout = () => {
     localStorage.clear();
   };
@@ -11,9 +22,11 @@ export const Navbar = (props) => {
     <nav className="navbar">
       <div className="navbar__item">
         <div className="navbar__item--title">
-          <Link className="navbar__link" to="/">
-            Repertoire
-          </Link>
+          <h1>
+            <Link className="navbar__link" to="/">
+              REPERTOIRE
+            </Link>
+          </h1>
         </div>
       </div>
       <div className="navbar__item">
@@ -54,7 +67,9 @@ export const Navbar = (props) => {
       </div>
       <div className="navbar__item">
         <div className="navbar__item--user">
-          <h4>User: </h4>
+          <h4>
+            <span>User:</span> {thisUser?.username}
+          </h4>
         </div>
       </div>
       <div className="navbar__item">
