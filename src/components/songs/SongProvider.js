@@ -4,6 +4,7 @@ export const SongContext = createContext();
 
 export const SongProvider = (props) => {
   const [songs, setSongs] = useState([]);
+  const [searchTerms, setSearchTerms] = useState('');
 
   const getSongs = () => {
     return fetch('http://localhost:8088/songs?_expand=artist&_expand=genre')
@@ -12,7 +13,7 @@ export const SongProvider = (props) => {
   };
 
   return (
-    <SongContext.Provider value={{ songs, getSongs }}>
+    <SongContext.Provider value={{ songs, getSongs, searchTerms, setSearchTerms }}>
       {props.children}
     </SongContext.Provider>
   );
