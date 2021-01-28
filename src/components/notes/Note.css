@@ -1,0 +1,74 @@
+.song-display__notes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 3px solid var(--accent-text-color);
+  width: 90%;
+  margin: 0 auto;
+}
+
+.notes__list {
+  width: 90%;
+  overflow-y: scroll;
+  padding-right: 1em;
+  max-height: 210px;
+}
+
+.notes__title {
+  font-family: var(--heading-font);
+  font-size: 30px;
+  text-shadow: var(--accent-drop-shadow);
+  color: var(--primary-text-color);
+}
+
+.note {
+  display: flex;
+  border-radius: 16px;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-background-color);
+  margin-bottom: 0.5em;
+  padding: 0 1em;
+}
+
+.note__text {
+  font-family: var(--body-font);
+  font-size: 23px;
+}
+
+.note__buttons {
+  color: var(--accent-text-color);
+  cursor: pointer;
+}
+
+.note__buttons i {
+  margin-left: 0.75em;
+}
+
+.note__buttons i:hover {
+  transform: translateX(1px) translateY(2px);
+  transition: ease-in-out 95ms;
+  color: var(--primary-text-color);
+}
+
+.notes__add-note-button {
+  cursor: pointer;
+  font-family: var(--heading-font);
+  font-size: 22px;
+  border-radius: 10px;
+  background-color: var(--secondary-background-color);
+  width: 150px;
+  height: 46px;
+  text-align: center;
+  padding-top: 0.25em;
+  margin-top: 0.25em;
+}
+
+.notes__add-note-button:hover {
+  background-color: var(--primary-text-color);
+  color: var(--accent-text-color);
+  transform: translateX(1px) translateY(2px);
+  transition: ease-in-out 95ms;
+  box-shadow: inset 0 3px 4px rgba(0, 0, 0, 0.25);
+}
