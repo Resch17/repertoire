@@ -6,6 +6,7 @@ import { SongDisplay } from './songs/SongDisplay';
 import { TuningProvider } from './tunings/TuningProvider';
 import { UserProvider } from './users/UserProvider';
 import { InstrumentProvider } from './instruments/InstrumentProvider';
+import { NoteProvider } from './notes/NoteProvider';
 
 export const ApplicationViews = () => (
   <>
@@ -13,18 +14,19 @@ export const ApplicationViews = () => (
       <InstrumentProvider>
         <TuningProvider>
           <SongProvider>
-            <Route exact path="/">
-              <SongList />
-            </Route>
+            <NoteProvider>
+              <Route exact path="/">
+                <SongList />
+              </Route>
 
-            <Route exact path="/songs">
-              <SongList />
-            </Route>
-
-            <Route exact path="/songs/detail/:songId(\d+)">
-              <SongList />
-              <SongDisplay />
-            </Route>
+              <Route exact path="/songs">
+                <SongList />
+              </Route>
+              <Route exact path="/songs/detail/:songId(\d+)">
+                <SongList />
+                <SongDisplay />
+              </Route>
+            </NoteProvider>
           </SongProvider>
         </TuningProvider>
       </InstrumentProvider>
