@@ -134,3 +134,12 @@
   color: var(--accent-text-color);
   font-size: 40px;
 }
+
+.song-display {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.song-display__details h1 {
+  text-shadow: var(--accent-drop-shadow);
+}

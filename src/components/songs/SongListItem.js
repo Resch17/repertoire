@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { SongContext } from './SongProvider';
 import './Song.css';
 

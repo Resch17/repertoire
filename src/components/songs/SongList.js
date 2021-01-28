@@ -7,7 +7,7 @@ import { SongListItem } from './SongListItem';
 import { SongSearch } from './SongSearch';
 
 export const SongList = () => {
-  const { songs, getSongs, searchTerms, setSearchTerms } = useContext(SongContext);
+  const { songs, getSongs, searchTerms } = useContext(SongContext);
   const { tunings, getTunings } = useContext(TuningContext);
   const { users, getUsers } = useContext(UserContext);
 
