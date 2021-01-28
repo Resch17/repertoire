@@ -41,7 +41,7 @@ export const Navbar = (props) => {
       <div className="navbar__item">
         <div className="navbar__item--songs">
           <h2>
-            <Link className="navbar__link" to="/songs">
+            <Link className="navbar__link" to="/">
               Songs
             </Link>
           </h2>
