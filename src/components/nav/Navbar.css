@@ -9,6 +9,10 @@
   padding: 0 10px;
 }
 
+.navbar__item {
+  cursor: pointer;
+}
+
 .navbar__item a,
 .navbar__item:visited {
   color: var(--primary-text-color);

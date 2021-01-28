@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import { SongContext } from './SongProvider';
 import { TuningContext } from '../tunings/TuningProvider';
 import { UserContext } from '../users/UserProvider';
@@ -6,11 +7,15 @@ import { SongListItem } from './SongListItem';
 import { SongSearch } from './SongSearch';
 
 export const SongList = () => {
-  const { songs, getSongs, searchTerms } = useContext(SongContext);
+  const { songs, getSongs, searchTerms, setSearchTerms } = useContext(SongContext);
   const { tunings, getTunings } = useContext(TuningContext);
   const { users, getUsers } = useContext(UserContext);
 
   const [filteredSongs, setFiltered] = useState([]);
+
+  const { songId } = useParams();
+
+  const history = useHistory();
 
   useEffect(() => {
     getUsers().then(getTunings).then(getSongs);
@@ -30,11 +35,47 @@ export const SongList = () => {
     }
   }, [searchTerms, songs]);
 
+  const tableStyle = () => {
+    if (songId) {
+      return {
+        display: 'block',
+        overflowY: 'scroll',
+        maxHeight: '150px',
+        width: '100%',
+      };
+    }
+  };
+
+  const footerStyle = () => {
+    if (songId) {
+      return {
+        display: 'none',
+      };
+    }
+  };
+
+  const randomSong = () => {
+    const getRandomInt = (min, max) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min);
+    };
+
+    let randomInt = getRandomInt(0, songs.length);
+
+    return randomInt + 1;
+  };
+
   return (
     <>
       <div className="top-row">
         <SongSearch />
-        <div className="randomize-button">
+        <div
+          className="randomize-button"
+          onClick={() => {
+            history.push(`/songs/detail/${randomSong()}`);
+          }}
+        >
           <p>Random Song!</p>
         </div>
       </div>
@@ -53,18 +94,27 @@ export const SongList = () => {
               <th>Added by:</th>
             </tr>
           </thead>
-          <tbody className="song-list__body">
-            {filteredSongs.map((s) => {
-              const tuning = tunings.find((t) => t.id === s.tuningId);
-              const user = users.find((u) => u.id === s.userId);
-              return (
-                <SongListItem key={s.id} song={s} tuning={tuning} user={user} />
-              );
-            })}
+          <tbody className="song-list__body" style={tableStyle()}>
+            {filteredSongs
+              .sort((a, b) => a.artist.name.localeCompare(b.artist.name))
+              .map((s) => {
+                const tuning = tunings.find((t) => t.id === s.tuningId);
+                const user = users.find((u) => u.id === s.userId);
+                return (
+                  <SongListItem
+                    key={s.id}
+                    song={s}
+                    tuning={tuning}
+                    user={user}
+                  />
+                );
+              })}
           </tbody>
         </table>
       </div>
-      <div className="song-message">Select a song above to get started!</div>
+      <div className="song-message" style={footerStyle()}>
+        Select a song above to get started!
+      </div>
     </>
   );
 };

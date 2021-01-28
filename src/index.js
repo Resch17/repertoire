@@ -7,8 +7,10 @@ import './index.css';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Repertoire />
+      <Repertoire style={{maxHeight: '100vh'}} />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// added max-height of 100vh above to limit app from scrolling

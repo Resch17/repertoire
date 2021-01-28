@@ -13,6 +13,14 @@ export const ApplicationViews = () => (
           <Route exact path="/">
             <SongList />
           </Route>
+          
+          <Route exact path="/songs">
+            <SongList />
+          </Route>
+
+          <Route exact path="/songs/detail/:songId(\d+)">
+            <SongList />
+          </Route>
         </SongProvider>
       </TuningProvider>
     </UserProvider>
