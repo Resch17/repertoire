@@ -8,7 +8,10 @@ export const InstrumentProvider = (props) => {
   const getInstruments = () => {
     return fetch('http://localhost:8088/instruments')
       .then((res) => res.json())
-      .then(setInstruments);
+      .then((instruments) => {
+        setInstruments(instruments);
+        return instruments;
+      });
   };
 
   return (

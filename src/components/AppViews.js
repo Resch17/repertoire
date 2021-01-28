@@ -2,19 +2,32 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { SongProvider } from './songs/SongProvider';
 import { SongList } from './songs/SongList';
+import { SongDisplay } from './songs/SongDisplay';
 import { TuningProvider } from './tunings/TuningProvider';
 import { UserProvider } from './users/UserProvider';
+import { InstrumentProvider } from './instruments/InstrumentProvider';
 
 export const ApplicationViews = () => (
   <>
     <UserProvider>
-      <TuningProvider>
-        <SongProvider>
-          <Route exact path="/">
-            <SongList />
-          </Route>
-        </SongProvider>
-      </TuningProvider>
+      <InstrumentProvider>
+        <TuningProvider>
+          <SongProvider>
+            <Route exact path="/">
+              <SongList />
+            </Route>
+
+            <Route exact path="/songs">
+              <SongList />
+            </Route>
+
+            <Route exact path="/songs/detail/:songId(\d+)">
+              <SongList />
+              <SongDisplay />
+            </Route>
+          </SongProvider>
+        </TuningProvider>
+      </InstrumentProvider>
     </UserProvider>
   </>
 );
