@@ -1,0 +1,66 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth input {
+  width: 300px;
+}
+
+.auth__labels {
+  display: flex;
+  width: 70%;
+  justify-content: center;
+}
+.auth__forms {
+  display: flex;
+}
+
+.auth__title {
+  color: var(--accent-text-color);
+}
+
+.auth__labels {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 0 auto 2em;
+}
+
+.auth__label-or {
+  color: var(--accent-text-color);
+  padding-left: 1em;
+}
+
+.auth__forms div {
+  width: 100%;
+}
+
+.auth__forms-login {
+  border-right: 2px solid var(--accent-text-color);
+  width: 48vw;
+}
+
+.auth__forms-register {
+  border-left: 2px solid var(--accent-text-color);
+}
+
+.form--login,
+.form--register {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container--login section {
+  margin-right: 50%;
+  width: 100%;
+}
+
+.form--login label,
+.form--register label {
+  font-family: var(--heading-font);
+  color: var(--accent-text-color);
+  padding-left: 0.75em;
+}
