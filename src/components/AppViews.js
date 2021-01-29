@@ -7,6 +7,8 @@ import { TuningProvider } from './tunings/TuningProvider';
 import { UserProvider } from './users/UserProvider';
 import { InstrumentProvider } from './instruments/InstrumentProvider';
 import { NoteProvider } from './notes/NoteProvider';
+import { Tuner } from './tunings/Tuner';
+import { Setlist } from './setlists/Setlist';
 
 export const ApplicationViews = () => (
   <>
@@ -27,6 +29,13 @@ export const ApplicationViews = () => (
                 <SongDisplay />
               </Route>
 
+              <Route exact path="/tune">
+                <Tuner />
+              </Route>
+
+              <Route exact path="/setlist">
+                <Setlist />
+              </Route>
             </NoteProvider>
           </SongProvider>
         </TuningProvider>

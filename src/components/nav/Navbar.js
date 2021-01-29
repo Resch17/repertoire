@@ -1,13 +1,23 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { UserContext } from '../users/UserProvider';
 
 export const Navbar = (props) => {
   const { users, getUsers } = useContext(UserContext);
+  const songsLink = useRef();
+  const tuneLink = useRef();
+  const setlistLink = useRef();
+
+  const activeLinkSet = () => {
+    if (window.location.href.search('song') > -1) {
+      songsLink.current.classList.add('navbar__item--active')
+    }
+  }
 
   useEffect(() => {
     getUsers();
+    activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const userId = parseInt(localStorage.getItem('rep_user'));
@@ -20,7 +30,7 @@ export const Navbar = (props) => {
 
   return (
     <nav className="navbar">
-      <div className="navbar__item">
+      <div className="navbar__item-logo">
         <div className="navbar__item--title">
           <h1>
             <Link className="navbar__link" to="/">
@@ -39,7 +49,7 @@ export const Navbar = (props) => {
         </div>
       </div>
       <div className="navbar__item">
-        <div className="navbar__item--songs">
+        <div className="navbar__item--songs" ref={songsLink}>
           <h2>
             <Link className="navbar__link" to="/">
               Songs
@@ -48,7 +58,7 @@ export const Navbar = (props) => {
         </div>
       </div>
       <div className="navbar__item">
-        <div className="navbar__item--tune">
+        <div className="navbar__item--tune" ref={tuneLink}>
           <h2>
             <Link className="navbar__link" to="/tune">
               Tune
@@ -57,7 +67,7 @@ export const Navbar = (props) => {
         </div>
       </div>
       <div className="navbar__item">
-        <div className="navbar__item--setlist">
+        <div className="navbar__item--setlist" ref={setlistLink}>
           <h2>
             <Link className="navbar__link" to="/setlist">
               Setlist

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { NoteContext } from './NoteProvider';
 import { Note } from './Note';
 import { NoteForm } from './NoteForm';
@@ -11,7 +11,6 @@ export const NoteList = () => {
   const { notes } = useContext(NoteContext);
   const [matchNotes, setMatchNotes] = useState([]);
 
-  // const history = useHistory();
   const noteDialog = useRef();
 
   useEffect(() => {
