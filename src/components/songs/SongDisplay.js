@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { SongContext } from './SongProvider';
+import { NoteContext } from '../notes/NoteProvider';
 import { InstrumentContext } from '../instruments/InstrumentProvider';
 import { NoteList } from '../notes/NoteList';
 import { useParams } from 'react-router-dom';
@@ -11,6 +12,8 @@ export const SongDisplay = () => {
 
   const [youtubeId, setYoutubeId] = useState('');
 
+  const { getNotes } = useContext(NoteContext);
+
   const { getSongById } = useContext(SongContext);
 
   const { getInstruments } = useContext(InstrumentContext);
@@ -20,16 +23,17 @@ export const SongDisplay = () => {
   });
 
   useEffect(() => {
-    getInstruments().then((instruments) => {
-      getSongById(songId).then((song) => {
-        setSong(song);
-        setInstrument(instruments.find((i) => i.id === song.instrumentId));
-        const [unused, yt] = song.youtube.split('v='); // eslint-disable-line no-unused-vars
-        setYoutubeId(yt);
+    getNotes().then(() => {
+      getInstruments().then((instruments) => {
+        getSongById(songId).then((song) => {
+          setSong(song);
+          setInstrument(instruments.find((i) => i.id === song.instrumentId));
+          const [unused, yt] = song.youtube.split('v='); // eslint-disable-line no-unused-vars
+          setYoutubeId(yt);
+        });
       });
     });
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
-
 
   return (
     <div className="song-display">

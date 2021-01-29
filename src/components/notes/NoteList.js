@@ -8,25 +8,14 @@ import './Note.css';
 export const NoteList = () => {
   const { songId } = useParams();
   const userId = parseInt(localStorage.getItem('rep_user'));
-  const { getNotes } = useContext(NoteContext);
+  const { notes } = useContext(NoteContext);
   const [matchNotes, setMatchNotes] = useState([]);
-  const [noteState, setNoteState] = useState([]);
 
   useEffect(() => {
-    getNotes().then((notes) => {
-      const userNotes = notes.filter((n) => n.userId === userId);
-      const notesToUse = userNotes.filter(
-        (un) => un.songId === parseInt(songId)
-      );
-      setMatchNotes(notesToUse);
-    });
-  }, [songId, noteState]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    getNotes().then((res) => {
-      setNoteState(res);
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    const userNotes = notes.filter((n) => n.userId === userId);
+    const notesToUse = userNotes.filter((un) => un.songId === parseInt(songId));
+    setMatchNotes(notesToUse);
+  }, [songId, notes]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
