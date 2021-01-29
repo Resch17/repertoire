@@ -26,6 +26,7 @@ export const ApplicationViews = () => (
                 <SongList />
                 <SongDisplay />
               </Route>
+
             </NoteProvider>
           </SongProvider>
         </TuningProvider>

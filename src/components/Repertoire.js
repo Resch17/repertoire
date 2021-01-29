@@ -2,8 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { ApplicationViews } from './AppViews';
 import { Navbar } from './nav/Navbar';
-import { Login } from './auth/Login';
-import { Register } from './auth/Register';
+import { Auth } from './auth/Auth';
 import { UserProvider } from './users/UserProvider';
 import './Repertoire.css';
 
@@ -21,16 +20,13 @@ export const Repertoire = () => (
             </>
           );
         } else {
-          return <Redirect to="/login" />;
+          return <Redirect to="/auth" />;
         }
       }}
     />
 
-    <Route path="/login">
-      <Login />
-    </Route>
-    <Route path="/register">
-      <Register />
+    <Route path="/auth">
+      <Auth />
     </Route>
   </>
 );

@@ -1,24 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState, useRef } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import { NoteContext } from './NoteProvider';
 import { Note } from './Note';
+import { NoteForm } from './NoteForm';
 
 import './Note.css';
 
 export const NoteList = () => {
   const { songId } = useParams();
   const userId = parseInt(localStorage.getItem('rep_user'));
-  const { getNotes, notes } = useContext(NoteContext);
+  const { notes } = useContext(NoteContext);
   const [matchNotes, setMatchNotes] = useState([]);
 
+  // const history = useHistory();
+  const noteDialog = useRef();
+
   useEffect(() => {
-    getNotes().then((notes) => {
-      const userNotes = notes.filter((n) => n.userId === userId);
-      const notesToUse = userNotes.filter(
-        (un) => un.songId === parseInt(songId)
-      );
-      setMatchNotes(notesToUse);
-    });
+    const userNotes = notes.filter((n) => n.userId === userId);
+    const notesToUse = userNotes.filter((un) => un.songId === parseInt(songId));
+    setMatchNotes(notesToUse);
   }, [songId, notes]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -30,8 +30,27 @@ export const NoteList = () => {
         })}
       </div>
       <div className="notes__button">
-        <div className="notes__add-note-button">Add a Note</div>
+        <div
+          className="notes__add-note-button"
+          onClick={() => {
+            noteDialog.current.showModal();
+          }}
+        >
+          Add a Note
+        </div>
       </div>
+      <dialog className="note-form-dialog" ref={noteDialog}>
+        <div className="note-form-dialog__content">
+          <NoteForm />
+          <button
+            onClick={() => {
+              noteDialog.current.close();
+            }}
+          >
+            Close Form
+          </button>
+        </div>
+      </dialog>
     </>
   );
 };
