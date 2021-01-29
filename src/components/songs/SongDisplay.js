@@ -30,6 +30,7 @@ export const SongDisplay = () => {
     });
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
 
+
   return (
     <div className="song-display">
       <div className="song-display__song-info">

@@ -8,8 +8,9 @@ import './Note.css';
 export const NoteList = () => {
   const { songId } = useParams();
   const userId = parseInt(localStorage.getItem('rep_user'));
-  const { getNotes, notes } = useContext(NoteContext);
+  const { getNotes } = useContext(NoteContext);
   const [matchNotes, setMatchNotes] = useState([]);
+  const [noteState, setNoteState] = useState([]);
 
   useEffect(() => {
     getNotes().then((notes) => {
@@ -19,7 +20,13 @@ export const NoteList = () => {
       );
       setMatchNotes(notesToUse);
     });
-  }, [songId, notes]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [songId, noteState]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    getNotes().then((res) => {
+      setNoteState(res);
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

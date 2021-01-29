@@ -21,7 +21,7 @@ export const NoteProvider = (props) => {
   };
 
   return (
-    <NoteContext.Provider value={{ notes, getNotes, deleteNote }}>
+    <NoteContext.Provider value={{ notes, getNotes, deleteNote, setNotes }}>
       {props.children}
     </NoteContext.Provider>
   );
