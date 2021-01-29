@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { NoteContext } from './NoteProvider';
 import { Note } from './Note';
 import { NoteForm } from './NoteForm';
-
 import './Note.css';
 
 export const NoteList = () => {
@@ -42,12 +41,12 @@ export const NoteList = () => {
       <dialog className="note-form-dialog" ref={noteDialog}>
         <div className="note-form-dialog__content">
           <NoteForm />
-          <button
+          <button className="note-form-dialog__close-button"
             onClick={() => {
               noteDialog.current.close();
             }}
           >
-            Close Form
+            X
           </button>
         </div>
       </dialog>
