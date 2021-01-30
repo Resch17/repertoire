@@ -6,6 +6,7 @@ import { ArtistList } from '../artists/ArtistList';
 import { GenreContext } from '../genres/GenreProvider';
 import { InstrumentContext } from '../instruments/InstrumentProvider';
 import { TuningContext } from '../tunings/TuningProvider';
+import './SongForm.css';
 
 export const SongForm = () => {
   const { addSong } = useContext(SongContext);
@@ -136,20 +137,20 @@ export const SongForm = () => {
     <section className="song-form-container">
       <form className="song-form">
         <h1 className="song-form__title">Add a song</h1>
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={song.title}
+            className="form-text"
+            autoComplete="off"
+            onChange={handleControlledInputChange}
+          />
+        </div>
         <div className="song-form__fields">
           <div className="song-form__fields--left">
-            <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                value={song.title}
-                className="form-text"
-                autoComplete="off"
-                onChange={handleControlledInputChange}
-              />
-            </div>
             <div className="form-group">
               <label htmlFor="artist">Artist</label>
               <input
@@ -163,6 +164,12 @@ export const SongForm = () => {
                 onChange={handleArtistInputChange}
               />
             </div>
+            <div className="artist-list" ref={artistListContainer}>
+              <ArtistList filtered={filteredArtists} />
+            </div>
+          </div>
+
+          <div className="song-form__fields--right">
             <div className="form-group">
               <label htmlFor="genreId">Genre</label>
               <select
@@ -214,35 +221,31 @@ export const SongForm = () => {
                 ))}
               </select>
             </div>
-          </div>
-        </div>
-        <div className="song-form__fields--right">
-          <div className="artist-list" ref={artistListContainer}>
-            <ArtistList filtered={filteredArtists} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="url">Tab URL</label>
-            <input
-              type="text"
-              name="url"
-              id="url"
-              value={song.url}
-              className="form-text"
-              autoComplete="off"
-              onChange={handleControlledInputChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="youtube">YouTube URL</label>
-            <input
-              type="text"
-              name="youtube"
-              id="youtube"
-              value={song.youtube}
-              className="form-text"
-              autoComplete="off"
-              onChange={handleControlledInputChange}
-            />
+
+            <div className="form-group">
+              <label htmlFor="url">Tab URL</label>
+              <input
+                type="text"
+                name="url"
+                id="url"
+                value={song.url}
+                className="form-text"
+                autoComplete="off"
+                onChange={handleControlledInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="youtube">YouTube URL</label>
+              <input
+                type="text"
+                name="youtube"
+                id="youtube"
+                value={song.youtube}
+                className="form-text"
+                autoComplete="off"
+                onChange={handleControlledInputChange}
+              />
+            </div>
           </div>
         </div>
 
