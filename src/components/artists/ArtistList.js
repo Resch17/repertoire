@@ -27,9 +27,11 @@ export const ArtistList = ({ filtered }) => {
   return (
     <>
       {filtered.length > 0 ? (
-        <h4>Select an artist</h4>
+        <h4 className="artist-list__title">Select an artist</h4>
       ) : (
-        <h4 onClick={saveArtist}>Add an artist</h4>
+        <h4 className="artist-list__title" onClick={saveArtist}>
+          Add new artist
+        </h4>
       )}
       {filtered.map((a) => {
         return (

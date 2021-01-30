@@ -16,6 +16,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1em 0;
+  border-radius: 15px;
 }
 
 .song-form__title {
@@ -48,4 +49,25 @@
   font-family: var(--heading-font);
   color: var(--accent-text-color);
   padding-left: 8px;
+}
+
+.artist-list__title {
+  color: var(--accent-text-color);
+  text-align: center;
+  margin: 0.5em 0;
+  cursor: pointer;
+  background-color: var(--secondary-background-color);
+  border-radius: 7px;
+}
+
+.song-form input {
+  width: 220px;
+  height: 25px;
+  background-color: var(--primary-text-color);
+  color: var(--background-color);
+  border: none;
+  outline: none;
+  font-family: var(--body-font);
+  padding: 0 0.5em;
+  font-size: 17px;
 }

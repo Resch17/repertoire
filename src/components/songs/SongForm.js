@@ -152,7 +152,7 @@ export const SongForm = () => {
         <div className="song-form__fields">
           <div className="song-form__fields--left">
             <div className="form-group">
-              <label htmlFor="artist">Artist</label>
+              <label htmlFor="artist">Artist - Search/Add</label>
               <input
                 type="text"
                 name="artist"
