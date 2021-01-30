@@ -7,7 +7,9 @@ export const SongProvider = (props) => {
   const [searchTerms, setSearchTerms] = useState('');
 
   const getSongs = () => {
-    return fetch('http://localhost:8088/songs?_expand=artist&_expand=genre&_expand=instrument')
+    return fetch(
+      'http://localhost:8088/songs?_expand=artist&_expand=genre&_expand=instrument'
+    )
       .then((res) => res.json())
       .then(setSongs);
   };
@@ -18,9 +20,26 @@ export const SongProvider = (props) => {
     ).then((res) => res.json());
   };
 
+  const addSong = (songObj) => {
+    return fetch('http://localhost:8088/songs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(songObj),
+    }).then(getSongs);
+  };
+
   return (
     <SongContext.Provider
-      value={{ songs, getSongs, searchTerms, setSearchTerms, getSongById }}
+      value={{
+        songs,
+        getSongs,
+        searchTerms,
+        setSearchTerms,
+        getSongById,
+        addSong,
+      }}
     >
       {props.children}
     </SongContext.Provider>

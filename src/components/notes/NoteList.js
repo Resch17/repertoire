@@ -14,7 +14,9 @@ export const NoteList = () => {
   const noteDialog = useRef();
 
   useEffect(() => {
+    // filter all notes to get user's notes
     const userNotes = notes.filter((n) => n.userId === userId);
+    // filter user's notes to get just their notes for this song
     const notesToUse = userNotes.filter((un) => un.songId === parseInt(songId));
     setMatchNotes(notesToUse);
   }, [songId, notes]); // eslint-disable-line react-hooks/exhaustive-deps

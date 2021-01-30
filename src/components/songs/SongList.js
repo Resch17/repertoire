@@ -18,7 +18,7 @@ export const SongList = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getUsers().then(getTunings).then(getSongs);
+    getTunings().then(getSongs).then(getUsers);
     activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

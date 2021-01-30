@@ -1,11 +1,14 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { SongContext } from './SongProvider';
+import { UserContext } from '../users/UserProvider';
 import './Song.css';
 
-export const SongListItem = ({ song, tuning, user }) => {
+export const SongListItem = ({ song, tuning }) => {
   const history = useHistory();
   const { setSearchTerms } = useContext(SongContext);
+  const { users } = useContext(UserContext);
+  const songUser = users.find((u) => u.id === song.userId);
 
   const { songId } = useParams();
 
@@ -55,7 +58,7 @@ export const SongListItem = ({ song, tuning, user }) => {
           <i className="fab fa-youtube fa-2x"></i>
         </a>
       </td>
-      <td className="text-center">{user.username}</td>
+      <td className="text-center">{songUser?.username}</td>
     </tr>
   );
 };
