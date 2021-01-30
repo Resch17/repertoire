@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ArtistContext } from './ArtistProvider';
 
 export const ArtistList = ({ filtered }) => {
@@ -6,7 +6,6 @@ export const ArtistList = ({ filtered }) => {
     setSelectedArtist,
     addArtist,
     newArtistName,
-    setNewArtistName,
     setAddedArtist,
   } = useContext(ArtistContext);
 

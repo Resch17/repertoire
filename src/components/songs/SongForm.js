@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { SongContext } from './SongProvider';
 import { ArtistContext } from '../artists/ArtistProvider';
 import { ArtistList } from '../artists/ArtistList';
@@ -12,13 +12,9 @@ export const SongForm = () => {
   const {
     getArtists,
     artists,
-    addArtist,
     selectedArtist,
     setSelectedArtist,
-    newArtistName,
     setNewArtistName,
-    addedArtist,
-    setAddedArtist,
   } = useContext(ArtistContext);
   const { getGenres, genres } = useContext(GenreContext);
   const { getInstruments, instruments } = useContext(InstrumentContext);
@@ -40,7 +36,7 @@ export const SongForm = () => {
     youtube: '',
   });
 
-  const [artist, setArtist] = useState({});
+  const [setArtist] = useState({});
   const [filteredArtists, setFilteredArtists] = useState([]);
 
   useEffect(() => {
@@ -61,7 +57,7 @@ export const SongForm = () => {
       artistTextbox.current.value = '';
       artistListContainer.current.classList.remove('isHidden');
     }
-  }, [selectedArtist]);
+  }, [selectedArtist]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleControlledInputChange = (evt) => {
     const newSong = { ...song };
