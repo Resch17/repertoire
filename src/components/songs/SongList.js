@@ -9,7 +9,7 @@ import { SongSearch } from './SongSearch';
 export const SongList = () => {
   const { songs, getSongs, searchTerms } = useContext(SongContext);
   const { tunings, getTunings } = useContext(TuningContext);
-  const { users, getUsers, activeLinkSet } = useContext(UserContext);
+  const { getUsers, activeLinkSet } = useContext(UserContext);
 
   const [filteredSongs, setFiltered] = useState([]);
 
@@ -100,13 +100,11 @@ export const SongList = () => {
               .sort((a, b) => a.artist.name.localeCompare(b.artist.name))
               .map((s) => {
                 const tuning = tunings.find((t) => t.id === s.tuningId);
-                const user = users.find((u) => u.id === s.userId);
                 return (
                   <SongListItem
                     key={s.id}
                     song={s}
                     tuning={tuning}
-                    user={user}
                   />
                 );
               })}
