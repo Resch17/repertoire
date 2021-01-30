@@ -38,3 +38,7 @@ a {
 .text-center {
   text-align: center;
 }
+
+.isHidden {
+  display: none;
+}

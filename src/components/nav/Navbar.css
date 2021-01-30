@@ -10,7 +10,17 @@
 }
 
 .navbar__item {
+  height: 75px;
   cursor: pointer;
+  padding-top: 18px;
+}
+
+.navbar__item div {
+  padding-bottom: 8px;
+}
+
+.navbar__item h4 {
+  padding-top: 7px;
 }
 
 .navbar__item a,
@@ -28,6 +38,10 @@
   font-family: var(--heading-font);
 }
 
+.navbar__item h2 {
+  font-size: 28px;
+}
+
 .navbar__item--title a,
 .navbar__item--title a:visited {
   color: var(--accent-text-color);
@@ -39,4 +53,8 @@
 
 .navbar__item--user span {
   color: var(--accent-text-color);
+}
+
+.navbar__item--active {
+  border-bottom: 5px solid var(--accent-text-color);
 }

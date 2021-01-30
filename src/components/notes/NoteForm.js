@@ -1,6 +1,7 @@
 import React, { useContext, useState, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { NoteContext } from './NoteProvider';
+import './Note.css';
 
 export const NoteForm = () => {
   const { addNote } = useContext(NoteContext);
@@ -8,7 +9,6 @@ export const NoteForm = () => {
   const { songId } = useParams();
   const [note, setNote] = useState({
     userId,
-    songId: parseInt(songId),
     text: '',
   });
 
@@ -20,7 +20,6 @@ export const NoteForm = () => {
   const handleControlledInputChange = (evt) => {
     const newNote = { ...note };
     let selectedVal = evt.target.value;
-
     newNote[evt.target.id] = selectedVal;
     setNote(newNote);
   };
@@ -29,7 +28,9 @@ export const NoteForm = () => {
     if (note.text === '') {
       window.alert('No empty notes!');
     } else {
-      addNote(note).then(() => {
+      const newNote = { ...note };
+      newNote.songId = parseInt(songId);
+      addNote(newNote).then(() => {
         noteDialog.close();
         textbox.current.value = '';
         note.text = '';
@@ -50,23 +51,25 @@ export const NoteForm = () => {
         ref={textbox}
         value={note.text}
       />
-      <button
-        onClick={(evt) => {
-          evt.preventDefault();
-          handleClickSaveNote();
-        }}
-      >
-        Save Note
-      </button>
-      <button
-        onClick={(evt) => {
-          evt.preventDefault();
-          textbox.current.value = '';
-          note.text = '';
-        }}
-      >
-        Clear
-      </button>
+      <div className="note-form__buttons">
+        <button
+          onClick={(evt) => {
+            evt.preventDefault();
+            handleClickSaveNote();
+          }}
+        >
+          Save Note
+        </button>
+        <button
+          onClick={(evt) => {
+            evt.preventDefault();
+            textbox.current.value = '';
+            note.text = '';
+          }}
+        >
+          Clear
+        </button>
+      </div>
     </form>
   );
 };

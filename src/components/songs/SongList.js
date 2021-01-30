@@ -9,7 +9,7 @@ import { SongSearch } from './SongSearch';
 export const SongList = () => {
   const { songs, getSongs, searchTerms } = useContext(SongContext);
   const { tunings, getTunings } = useContext(TuningContext);
-  const { users, getUsers } = useContext(UserContext);
+  const { users, getUsers, activeLinkSet } = useContext(UserContext);
 
   const [filteredSongs, setFiltered] = useState([]);
 
@@ -18,7 +18,8 @@ export const SongList = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getUsers().then(getTunings).then(getSongs);
+    getTunings().then(getSongs).then(getUsers);
+    activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {

@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { NoteContext } from './NoteProvider';
 import { Note } from './Note';
 import { NoteForm } from './NoteForm';
-
 import './Note.css';
 
 export const NoteList = () => {
@@ -12,11 +11,12 @@ export const NoteList = () => {
   const { notes } = useContext(NoteContext);
   const [matchNotes, setMatchNotes] = useState([]);
 
-  // const history = useHistory();
   const noteDialog = useRef();
 
   useEffect(() => {
+    // filter all notes to get user's notes
     const userNotes = notes.filter((n) => n.userId === userId);
+    // filter user's notes to get just their notes for this song
     const notesToUse = userNotes.filter((un) => un.songId === parseInt(songId));
     setMatchNotes(notesToUse);
   }, [songId, notes]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -42,12 +42,12 @@ export const NoteList = () => {
       <dialog className="note-form-dialog" ref={noteDialog}>
         <div className="note-form-dialog__content">
           <NoteForm />
-          <button
+          <button className="note-form-dialog__close-button"
             onClick={() => {
               noteDialog.current.close();
             }}
           >
-            Close Form
+            X
           </button>
         </div>
       </dialog>
