@@ -11,7 +11,7 @@
 
 .song-form {
   background-color: var(--background-color);
-  width: 75%;
+  width: 55%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,17 +27,17 @@
 .song-form__fields {
   display: flex;
   flex-direction: row;
-  margin: 1em 0;
+  margin: 2em 0;
 }
 
-.song-form__fields--left{
-  padding-right: 1em;
+.song-form__fields--left {
+  padding-right: 3em;
   border-right: 2px solid var(--accent-text-color);
 }
 
 .song-form__fields--right {
   border-left: 2px solid var(--accent-text-color);
-  padding-left: 1em;
+  padding-left: 3em;
 }
 
 .form-group {
@@ -55,12 +55,50 @@
   color: var(--accent-text-color);
   text-align: center;
   margin: 0.5em 0;
-  cursor: pointer;
-  background-color: var(--secondary-background-color);
-  border-radius: 7px;
 }
 
-.song-form input {
+.artist-list__title--select {
+}
+
+.artist-list__title--add {
+  background-color: var(--secondary-background-color);
+  cursor: pointer;
+  border-radius: 7px;
+  width: 140px;
+  margin: 0.66em auto;
+}
+
+.artist-list__title--add:hover {
+  background-color: var(--primary-text-color);
+  color: var(--accent-text-color);
+}
+
+.artist-list__list {
+  overflow-y: auto;
+  height: 100px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.artist-list__list::-webkit-scrollbar {
+  display: none;
+}
+
+.artist-option {
+  text-align: center;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+.artist-option:hover {
+  border-top: 2px solid var(--accent-text-color);
+  border-bottom: 2px solid var(--accent-text-color);
+}
+
+.song-form input,
+.song-form select {
   width: 220px;
   height: 25px;
   background-color: var(--primary-text-color);
@@ -70,4 +108,49 @@
   font-family: var(--body-font);
   padding: 0 0.5em;
   font-size: 17px;
+  border-radius: 5px;
+}
+
+.song-form__buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-form__buttons button {
+  border: none;
+  outline: none;
+  background-color: var(--accent-text-color);
+  color: var(--primary-text-color);
+  font-family: var(--heading-font);
+  font-size: 25px;
+  padding: 3px 9px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.song-form__buttons button:hover {
+  background-color: var(--primary-text-color);
+  color: var(--accent-text-color);
+}
+
+.song-form__button-save {
+  margin-bottom: 0.75em;
+}
+
+.song-form__close-button {
+  background-color: var(--accent-text-color);
+  color: var(--background-color);
+  padding: 1px 7px;
+  border-radius: 5px;
+  font-family: var(--body-font);
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  right: 24%;
+  cursor: pointer;
+}
+
+.song-form__close-button:hover {
+  background-color: var(--primary-text-color);
+  color: var(--accent-text-color)
 }

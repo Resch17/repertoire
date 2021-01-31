@@ -25,6 +25,7 @@ export const SongForm = () => {
   const history = useHistory();
   const artistTextbox = useRef();
   const artistListContainer = useRef();
+  const backdrop = useRef();
 
   const [song, setSong] = useState({
     title: '',
@@ -37,11 +38,11 @@ export const SongForm = () => {
     youtube: '',
   });
 
-  const [setArtist] = useState({});
   const [filteredArtists, setFilteredArtists] = useState([]);
 
   useEffect(() => {
     getArtists().then(getGenres).then(getInstruments).then(getTunings);
+    // backdrop.current.focus();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -49,10 +50,6 @@ export const SongForm = () => {
       artistTextbox.current.value = selectedArtist.name;
       setFilteredArtists([]);
       artistListContainer.current.classList.add('isHidden');
-      setArtist({
-        id: selectedArtist.id,
-        name: selectedArtist.name,
-      });
       console.log(selectedArtist);
     } else {
       artistTextbox.current.value = '';
@@ -74,7 +71,9 @@ export const SongForm = () => {
 
   const handleArtistInputChange = (evt) => {
     const artistInput = evt.target.value;
-    setNewArtistName(artistInput);
+    if (artistTextbox.current.value !== '' && artistInput !== '') {
+      setNewArtistName(artistInput);
+    }
 
     const filtered = artists.filter((a) =>
       a.name.toLowerCase().includes(artistInput.toLowerCase())
@@ -118,7 +117,6 @@ export const SongForm = () => {
   };
 
   const clearForm = () => {
-    setArtist({});
     setSong({
       title: '',
       artistId: 0,
@@ -131,11 +129,31 @@ export const SongForm = () => {
     });
     setFilteredArtists([]);
     setSelectedArtist(null);
+    artistTextbox.current.value = '';
   };
 
   return (
-    <section className="song-form-container">
-      <form className="song-form">
+    <section
+      className="song-form-container"
+      onKeyUp={(evt) => {
+        if (evt.key === 'Escape') {
+          clearForm();
+          history.push('/');
+        }
+      }}
+      ref={backdrop}
+      tabIndex={0}
+    >
+      <form className="song-form" id="song-form">
+        <div
+          className="song-form__close-button"
+          onClick={() => {
+            clearForm();
+            history.push('/');
+          }}
+        >
+          X
+        </div>
         <h1 className="song-form__title">Add a song</h1>
         <div className="form-group">
           <label htmlFor="title">Title</label>
@@ -145,6 +163,7 @@ export const SongForm = () => {
             id="title"
             value={song.title}
             className="form-text"
+            autoFocus
             autoComplete="off"
             onChange={handleControlledInputChange}
           />
@@ -263,7 +282,7 @@ export const SongForm = () => {
               clearForm();
             }}
           >
-            Clear form
+            Clear Form
           </button>
         </div>
       </form>
