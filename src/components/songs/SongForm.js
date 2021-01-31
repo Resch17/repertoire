@@ -6,6 +6,7 @@ import { ArtistList } from '../artists/ArtistList';
 import { GenreContext } from '../genres/GenreProvider';
 import { InstrumentContext } from '../instruments/InstrumentProvider';
 import { TuningContext } from '../tunings/TuningProvider';
+import './SongForm.css';
 
 export const SongForm = () => {
   const { addSong } = useContext(SongContext);
@@ -24,6 +25,7 @@ export const SongForm = () => {
   const history = useHistory();
   const artistTextbox = useRef();
   const artistListContainer = useRef();
+  const backdrop = useRef();
 
   const [song, setSong] = useState({
     title: '',
@@ -36,11 +38,11 @@ export const SongForm = () => {
     youtube: '',
   });
 
-  const [setArtist] = useState({});
   const [filteredArtists, setFilteredArtists] = useState([]);
 
   useEffect(() => {
     getArtists().then(getGenres).then(getInstruments).then(getTunings);
+    // backdrop.current.focus();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -48,10 +50,6 @@ export const SongForm = () => {
       artistTextbox.current.value = selectedArtist.name;
       setFilteredArtists([]);
       artistListContainer.current.classList.add('isHidden');
-      setArtist({
-        id: selectedArtist.id,
-        name: selectedArtist.name,
-      });
       console.log(selectedArtist);
     } else {
       artistTextbox.current.value = '';
@@ -73,7 +71,9 @@ export const SongForm = () => {
 
   const handleArtistInputChange = (evt) => {
     const artistInput = evt.target.value;
-    setNewArtistName(artistInput);
+    if (artistTextbox.current.value !== '' && artistInput !== '') {
+      setNewArtistName(artistInput);
+    }
 
     const filtered = artists.filter((a) =>
       a.name.toLowerCase().includes(artistInput.toLowerCase())
@@ -117,7 +117,6 @@ export const SongForm = () => {
   };
 
   const clearForm = () => {
-    setArtist({});
     setSong({
       title: '',
       artistId: 0,
@@ -130,28 +129,49 @@ export const SongForm = () => {
     });
     setFilteredArtists([]);
     setSelectedArtist(null);
+    artistTextbox.current.value = '';
   };
 
   return (
-    <section className="song-form-container">
-      <form className="song-form">
+    <section
+      className="song-form-container"
+      onKeyUp={(evt) => {
+        if (evt.key === 'Escape') {
+          clearForm();
+          history.push('/');
+        }
+      }}
+      ref={backdrop}
+      tabIndex={0}
+    >
+      <form className="song-form" id="song-form">
+        <div
+          className="song-form__close-button"
+          onClick={() => {
+            clearForm();
+            history.push('/');
+          }}
+        >
+          X
+        </div>
         <h1 className="song-form__title">Add a song</h1>
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={song.title}
+            className="form-text"
+            autoFocus
+            autoComplete="off"
+            onChange={handleControlledInputChange}
+          />
+        </div>
         <div className="song-form__fields">
           <div className="song-form__fields--left">
             <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                value={song.title}
-                className="form-text"
-                autoComplete="off"
-                onChange={handleControlledInputChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="artist">Artist</label>
+              <label htmlFor="artist">Artist - Search/Add</label>
               <input
                 type="text"
                 name="artist"
@@ -163,6 +183,12 @@ export const SongForm = () => {
                 onChange={handleArtistInputChange}
               />
             </div>
+            <div className="artist-list" ref={artistListContainer}>
+              <ArtistList filtered={filteredArtists} />
+            </div>
+          </div>
+
+          <div className="song-form__fields--right">
             <div className="form-group">
               <label htmlFor="genreId">Genre</label>
               <select
@@ -214,35 +240,31 @@ export const SongForm = () => {
                 ))}
               </select>
             </div>
-          </div>
-        </div>
-        <div className="song-form__fields--right">
-          <div className="artist-list" ref={artistListContainer}>
-            <ArtistList filtered={filteredArtists} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="url">Tab URL</label>
-            <input
-              type="text"
-              name="url"
-              id="url"
-              value={song.url}
-              className="form-text"
-              autoComplete="off"
-              onChange={handleControlledInputChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="youtube">YouTube URL</label>
-            <input
-              type="text"
-              name="youtube"
-              id="youtube"
-              value={song.youtube}
-              className="form-text"
-              autoComplete="off"
-              onChange={handleControlledInputChange}
-            />
+
+            <div className="form-group">
+              <label htmlFor="url">Tab URL</label>
+              <input
+                type="text"
+                name="url"
+                id="url"
+                value={song.url}
+                className="form-text"
+                autoComplete="off"
+                onChange={handleControlledInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="youtube">YouTube URL</label>
+              <input
+                type="text"
+                name="youtube"
+                id="youtube"
+                value={song.youtube}
+                className="form-text"
+                autoComplete="off"
+                onChange={handleControlledInputChange}
+              />
+            </div>
           </div>
         </div>
 
@@ -260,7 +282,7 @@ export const SongForm = () => {
               clearForm();
             }}
           >
-            Clear form
+            Clear Form
           </button>
         </div>
       </form>

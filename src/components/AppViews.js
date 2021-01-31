@@ -35,6 +35,7 @@ export const ApplicationViews = () => (
                   </Route>
 
                   <Route exact path="/songs/add">
+                    <SongList />
                     <SongForm />
                   </Route>
 
