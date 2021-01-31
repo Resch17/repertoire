@@ -61,7 +61,8 @@
 }
 
 .artist-list__title--add {
-  background-color: var(--secondary-background-color);
+  background-color: var(--accent-text-color);
+  color: var(--primary-text-color);
   cursor: pointer;
   border-radius: 7px;
   width: 140px;
