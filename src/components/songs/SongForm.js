@@ -25,7 +25,6 @@ export const SongForm = () => {
   const history = useHistory();
   const artistTextbox = useRef();
   const artistListContainer = useRef();
-  const backdrop = useRef();
 
   const [song, setSong] = useState({
     title: '',
@@ -42,7 +41,6 @@ export const SongForm = () => {
 
   useEffect(() => {
     getArtists().then(getGenres).then(getInstruments).then(getTunings);
-    // backdrop.current.focus();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -140,7 +138,6 @@ export const SongForm = () => {
           history.push('/');
         }
       }}
-      ref={backdrop}
       tabIndex={0}
     >
       <form className="song-form" id="song-form">
