@@ -50,7 +50,6 @@ export const SongForm = () => {
       artistTextbox.current.value = selectedArtist.name;
       setFilteredArtists([]);
       artistListContainer.current.classList.add('isHidden');
-      console.log(selectedArtist);
     } else {
       artistTextbox.current.value = '';
       artistListContainer.current.classList.remove('isHidden');
