@@ -12,7 +12,7 @@ export const TuningProvider = (props) => {
   };
 
   return (
-    <TuningContext.Provider value={{ tunings, getTunings }}>
+    <TuningContext.Provider value={{ tunings, getTunings, setTunings }}>
       {props.children}
     </TuningContext.Provider>
   );

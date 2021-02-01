@@ -150,7 +150,7 @@ export const SongForm = () => {
         >
           X
         </div>
-        <h1 className="song-form__title">Add a song</h1>
+        <h1 className="song-form__title">Add a Song</h1>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input

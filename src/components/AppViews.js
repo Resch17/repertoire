@@ -4,6 +4,7 @@ import { SongProvider } from './songs/SongProvider';
 import { SongList } from './songs/SongList';
 import { SongDisplay } from './songs/SongDisplay';
 import { TuningProvider } from './tunings/TuningProvider';
+import { ToneProvider } from "./tones/ToneProvider";
 import { UserProvider } from './users/UserProvider';
 import { InstrumentProvider } from './instruments/InstrumentProvider';
 import { NoteProvider } from './notes/NoteProvider';
@@ -39,9 +40,11 @@ export const ApplicationViews = () => (
                     <SongForm />
                   </Route>
 
-                  <Route exact path="/tune">
-                    <Tuner />
-                  </Route>
+                  <ToneProvider>
+                    <Route exact path="/tune">
+                      <Tuner />
+                    </Route>
+                  </ToneProvider>
 
                   <Route exact path="/setlist">
                     <Setlist />
