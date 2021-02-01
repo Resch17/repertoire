@@ -29,7 +29,7 @@ export const SongListItem = ({ song, tuning }) => {
 
   useEffect(() => {
     scrollControl();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <tr

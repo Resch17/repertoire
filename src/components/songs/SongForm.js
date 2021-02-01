@@ -25,7 +25,6 @@ export const SongForm = () => {
   const history = useHistory();
   const artistTextbox = useRef();
   const artistListContainer = useRef();
-  const backdrop = useRef();
 
   const [song, setSong] = useState({
     title: '',
@@ -42,7 +41,6 @@ export const SongForm = () => {
 
   useEffect(() => {
     getArtists().then(getGenres).then(getInstruments).then(getTunings);
-    // backdrop.current.focus();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -50,7 +48,6 @@ export const SongForm = () => {
       artistTextbox.current.value = selectedArtist.name;
       setFilteredArtists([]);
       artistListContainer.current.classList.add('isHidden');
-      console.log(selectedArtist);
     } else {
       artistTextbox.current.value = '';
       artistListContainer.current.classList.remove('isHidden');
@@ -141,7 +138,6 @@ export const SongForm = () => {
           history.push('/');
         }
       }}
-      ref={backdrop}
       tabIndex={0}
     >
       <form className="song-form" id="song-form">
@@ -154,7 +150,7 @@ export const SongForm = () => {
         >
           X
         </div>
-        <h1 className="song-form__title">Add a song</h1>
+        <h1 className="song-form__title">Add a Song</h1>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input

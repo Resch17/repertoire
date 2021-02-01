@@ -8,11 +8,14 @@ export const TuningProvider = (props) => {
   const getTunings = () => {
     return fetch('http://localhost:8088/tunings?_expand=instrument')
       .then((res) => res.json())
-      .then(setTunings);
+      .then((parsed) => {
+        setTunings(parsed);
+        return parsed;
+      });
   };
 
   return (
-    <TuningContext.Provider value={{ tunings, getTunings }}>
+    <TuningContext.Provider value={{ tunings, getTunings, setTunings }}>
       {props.children}
     </TuningContext.Provider>
   );
