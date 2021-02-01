@@ -28,7 +28,7 @@ export const GuitarTuning = ({ tuning, tones }) => {
               }
             }}
           >
-            {t.note}
+            {t?.note}
           </h1>
         );
       })}

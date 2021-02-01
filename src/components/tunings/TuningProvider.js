@@ -8,7 +8,10 @@ export const TuningProvider = (props) => {
   const getTunings = () => {
     return fetch('http://localhost:8088/tunings?_expand=instrument')
       .then((res) => res.json())
-      .then(setTunings);
+      .then((parsed) => {
+        setTunings(parsed);
+        return parsed;
+      });
   };
 
   return (

@@ -5,12 +5,13 @@ import { TuningModule } from './TuningModule';
 import './Tuner.css';
 
 export const Tuner = () => {
-  const { getTunings, tunings } = useContext(TuningContext);
+  const { getTunings } = useContext(TuningContext);
   const { activeLinkSet } = useContext(UserContext);
   const instrumentSelect = useRef();
 
+  const [tunings, setTunings] = useState([]);
   const [instrument, setInstrument] = useState(1);
-  const [selectedTuning, setSelectedTuning] = useState({
+  const standardTuning = {
     id: 1,
     name: 'Standard',
     instrumentId: 1,
@@ -20,11 +21,17 @@ export const Tuner = () => {
     string4toneId: 4,
     string5toneId: 5,
     string6toneId: 6,
-  });
+    instrument: {
+      id: 1,
+      name: 'Guitar',
+    },
+  };
+  const [selectedTuning, setSelectedTuning] = useState(standardTuning);
 
   useEffect(() => {
-    getTunings().then(() => {
-      setSelectedTuning(tunings.find((t) => t.id === 1));
+    getTunings().then((parsed) => {
+      setTunings(parsed);
+      setSelectedTuning(parsed.find((t) => t.id === 1));
     });
     activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -33,12 +40,11 @@ export const Tuner = () => {
     instrumentSelect.current.checked ? setInstrument(2) : setInstrument(1);
   };
 
-  // instrumentSelection code
   useEffect(() => {
     if (instrument === 2) {
       setSelectedTuning(tunings.find((t) => t.id === 3));
     } else {
-      setSelectedTuning(tunings.find((t) => t.id === 1));
+      setSelectedTuning(standardTuning);
     }
   }, [instrument]); // eslint-disable-line react-hooks/exhaustive-deps
 
