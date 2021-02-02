@@ -8,7 +8,8 @@ export const GuitarTuning = ({ tuning, tones }) => {
   const tone5 = tones.find((t) => tuning.string5toneId === t.id);
   const tone6 = tones.find((t) => tuning.string6toneId === t.id);
 
-  const toneArray = [tone1, tone2, tone3, tone4, tone5, tone6];
+  const toneArrayLeft = [tone3, tone2, tone1];
+  const toneArrayRight = [tone4, tone5, tone6];
 
   const notePlayer = (path) => {
     const audio = new Audio(`${path}`);
@@ -17,22 +18,45 @@ export const GuitarTuning = ({ tuning, tones }) => {
 
   return (
     <>
-      <h1>GUITAR HEADSTOCK!</h1>
-      {toneArray.map((t) => {
-        return (
-          <h1
-            key={t.id}
-            className="tuner-note"
-            onClick={() => {
-              if (t.path) {
-                notePlayer(t.path);
-              }
-            }}
-          >
-            {t?.note}
-          </h1>
-        );
-      })}
+      <div className="guitar-headstock">
+        <div className="guitar-headstock__notes guitar-headstock__notes-left">
+          {toneArrayLeft.map((t) => {
+            return (
+              <h1
+                key={t.id}
+                className="tuner-note"
+                onClick={() => {
+                  if (t.path) {
+                    notePlayer(t.path);
+                  }
+                }}
+              >
+                {t?.note}
+              </h1>
+            );
+          })}
+        </div>
+        <div className="guitar-headstock__image">
+          <img src="/images/guitar-headstock.png" alt="Guitar Tuner" />
+        </div>
+        <div className="guitar-headstock__notes guitar-headstock__notes-right">
+          {toneArrayRight.map((t) => {
+            return (
+              <h1
+                key={t.id}
+                className="tuner-note"
+                onClick={() => {
+                  if (t.path) {
+                    notePlayer(t.path);
+                  }
+                }}
+              >
+                {t?.note}
+              </h1>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };
