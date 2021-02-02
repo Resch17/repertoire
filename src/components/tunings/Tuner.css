@@ -1,3 +1,11 @@
+.tuner-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* CSS for instrument switch */
 
 /* The switch - the box around the slider */
@@ -24,20 +32,20 @@
   right: 0;
   bottom: 0;
   background-color: var(--primary-text-color);
-  -webkit-transition: .3s;
-  transition: .3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: var(--accent-text-color);
-  -webkit-transition: .3s;
-  transition: .3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 input:checked + .slider:before {
@@ -69,3 +77,13 @@ input:checked + .slider:before {
   margin: 0 1em;
   font-size: 30px;
 }
+
+.tuner-note {
+  text-shadow: var(--accent-drop-shadow);
+  cursor: pointer;
+}
+
+.tuner-note:hover {
+  color: var(--accent-text-color);
+}
+

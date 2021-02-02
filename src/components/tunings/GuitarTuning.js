@@ -22,6 +22,7 @@ export const GuitarTuning = ({ tuning, tones }) => {
         return (
           <h1
             key={t.id}
+            className="tuner-note"
             onClick={() => {
               if (t.path) {
                 notePlayer(t.path);

@@ -54,7 +54,7 @@ export const Tuner = () => {
   };
 
   return (
-    <div className="tuner-container">
+    <>
       <div className="tuner__instrument-select">
         <h2>Guitar</h2>
         <label className="switch">
@@ -67,21 +67,23 @@ export const Tuner = () => {
         </label>
         <h2>Bass</h2>
       </div>
-      <div className="tuner__tuning-select">
-        <label>Tuning</label>
-        <select onChange={handleSelectTuning} value={selectedTuning.id}>
-          {tunings
-            .filter((t) => t.instrumentId === instrument)
-            .map((t) => (
-              <option key={t.id} value={t.id}>
-                {t.name}
-              </option>
-            ))}
-        </select>
+      <div className="tuner-container">
+        <div className="tuner__tuning-select">
+          <label>Tuning</label>
+          <select onChange={handleSelectTuning} value={selectedTuning.id}>
+            {tunings
+              .filter((t) => t.instrumentId === instrument)
+              .map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.name}
+                </option>
+              ))}
+          </select>
+        </div>
+        <div className="tuner">
+          <TuningModule tuning={selectedTuning} />
+        </div>
       </div>
-      <div className="tuner">
-        <TuningModule tuning={selectedTuning} />
-      </div>
-    </div>
+    </>
   );
 };
