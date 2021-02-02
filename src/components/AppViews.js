@@ -4,7 +4,7 @@ import { SongProvider } from './songs/SongProvider';
 import { SongList } from './songs/SongList';
 import { SongDisplay } from './songs/SongDisplay';
 import { TuningProvider } from './tunings/TuningProvider';
-import { ToneProvider } from "./tones/ToneProvider";
+import { ToneProvider } from './tones/ToneProvider';
 import { UserProvider } from './users/UserProvider';
 import { InstrumentProvider } from './instruments/InstrumentProvider';
 import { NoteProvider } from './notes/NoteProvider';
@@ -13,6 +13,7 @@ import { Setlist } from './setlists/Setlist';
 import { SongForm } from './songs/SongForm';
 import { ArtistProvider } from './artists/ArtistProvider';
 import { GenreProvider } from './genres/GenreProvider';
+import { SetlistProvider } from './setlists/SetlistProvider';
 
 export const ApplicationViews = () => (
   <>
@@ -45,10 +46,11 @@ export const ApplicationViews = () => (
                       <Tuner />
                     </Route>
                   </ToneProvider>
-
-                  <Route exact path="/setlist">
-                    <Setlist />
-                  </Route>
+                  <SetlistProvider>
+                    <Route exact path="/setlist">
+                      <Setlist />
+                    </Route>
+                  </SetlistProvider>
                 </NoteProvider>
               </SongProvider>
             </TuningProvider>

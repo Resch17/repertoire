@@ -1,0 +1,33 @@
+.setlist-container {
+  width: 60%;
+  margin: 2em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary-text-color);
+  color: var(--background-color);
+  padding-bottom: 2em;
+}
+
+.setlist-toprow {
+  width: 90%;
+  margin: 7px auto 10px;
+  text-align: center;
+  border-bottom: 4px solid var(--background-color);
+}
+
+.setlist-list {
+  width: 100%;
+}
+
+.setlist-item {
+  cursor: pointer;
+  width: 88%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.setlist-item:hover {
+  border-bottom: 2px solid var(--background-color);
+  border-top: 2px solid var(--background-color);
+}

@@ -8,7 +8,10 @@ export const SetlistProvider = (props) => {
   const getSetlists = () => {
     return fetch('http://localhost:8088/setlists')
       .then((res) => res.json())
-      .then(setSetlists);
+      .then((parsed) => {
+        setSetlists(parsed);
+        return parsed;
+      });
   };
 
   return (
