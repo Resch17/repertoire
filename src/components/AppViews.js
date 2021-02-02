@@ -24,29 +24,29 @@ export const ApplicationViews = () => (
             <TuningProvider>
               <SongProvider>
                 <NoteProvider>
-                  <Route exact path="/">
-                    <SongList />
-                  </Route>
-
-                  <Route exact path="/songs">
-                    <SongList />
-                  </Route>
-                  <Route exact path="/songs/detail/:songId(\d+)">
-                    <SongList />
-                    <SongDisplay />
-                  </Route>
-
-                  <Route exact path="/songs/add">
-                    <SongList />
-                    <SongForm />
-                  </Route>
-
-                  <ToneProvider>
-                    <Route exact path="/tune">
-                      <Tuner />
-                    </Route>
-                  </ToneProvider>
                   <SetlistProvider>
+                    <Route exact path="/">
+                      <SongList />
+                    </Route>
+
+                    <Route exact path="/songs">
+                      <SongList />
+                    </Route>
+                    <Route exact path="/songs/detail/:songId(\d+)">
+                      <SongList />
+                      <SongDisplay />
+                    </Route>
+
+                    <Route exact path="/songs/add">
+                      <SongList />
+                      <SongForm />
+                    </Route>
+
+                    <ToneProvider>
+                      <Route exact path="/tune">
+                        <Tuner />
+                      </Route>
+                    </ToneProvider>
                     <Route exact path="/setlist">
                       <Setlist />
                     </Route>
