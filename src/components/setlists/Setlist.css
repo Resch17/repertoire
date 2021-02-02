@@ -23,11 +23,33 @@
 .setlist-item {
   cursor: pointer;
   width: 88%;
-  text-align: center;
+  text-align: left;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 
 .setlist-item:hover {
   border-bottom: 2px solid var(--background-color);
   border-top: 2px solid var(--background-color);
+}
+
+.setlist-item__handle {
+  color: var(--background-color);
+  background-color: var(--secondary-background-color);
+  opacity: 85%;
+  padding: 0 10px;
+  text-align: center;
+  border-radius: 8px;
+  margin-right: 1em;
+  margin-left: 5px;
+}
+
+.setlist-item__delete-button {
+  color: var(--accent-text-color);
+  margin-left: 3em;
+}
+
+.setlist-item__delete-button:hover {
+  color: var(--secondary-background-color);
 }

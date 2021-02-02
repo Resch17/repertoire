@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { UserContext } from '../users/UserProvider';
 import { SongContext } from '../songs/SongProvider';
 import { SetlistContext } from './SetlistProvider';
@@ -45,13 +44,37 @@ export const Setlist = () => {
     const dragItemOrdinal = dragItem.ordinal;
     const dropItemOrdinal = dropItem.ordinal;
 
+    if (dragItemOrdinal === dropItemOrdinal) {
+      return;
+    }
+
     const newSetlistState = newSetlist.map((sl) => {
       if (sl.id === parseInt(dragId)) {
         sl.ordinal = dropItemOrdinal;
+        sl.affected = true;
+        return sl;
       }
-      if (sl.id === parseInt(evt.currentTarget.id)) {
-        sl.ordinal = dragItemOrdinal;
+
+      if (sl.ordinal < dragItemOrdinal && sl.ordinal < dropItemOrdinal) {
+        return sl;
       }
+
+      if (sl.ordinal > dragItemOrdinal && sl.ordinal > dropItemOrdinal) {
+        return sl;
+      }
+
+      if (dragItemOrdinal > dropItemOrdinal && sl.ordinal >= dropItemOrdinal) {
+        sl.ordinal = sl.ordinal + 1;
+        sl.affected = true;
+        return sl;
+      }
+
+      if (dragItemOrdinal < dropItemOrdinal && sl.ordinal <= dropItemOrdinal) {
+        sl.ordinal = sl.ordinal - 1;
+        sl.affected = true;
+        return sl;
+      }
+
       return sl;
     });
 
@@ -61,7 +84,10 @@ export const Setlist = () => {
 
   const changeAPIsetlist = () => {
     setlist.forEach((sl) => {
-      updateSetlistItem(sl);
+      if (sl.affected) {
+        delete sl.affected;
+        updateSetlistItem(sl);
+      }
     });
   };
 
@@ -88,6 +114,8 @@ export const Setlist = () => {
                     id={item.id}
                     handleDrag={handleDrag}
                     handleDrop={handleDrop}
+                    ordinal={item.ordinal}
+                    setSetlist={setSetlist}
                   />
                 );
               })}

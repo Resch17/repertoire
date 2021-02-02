@@ -48,3 +48,7 @@ a {
 .isHidden {
   display: none;
 }
+
+.opacity-none {
+  opacity: 0%;
+}

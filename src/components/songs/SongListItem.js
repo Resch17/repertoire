@@ -53,8 +53,8 @@ export const SongListItem = ({ song, tuning }) => {
       <td>{song.artist.name}</td>
       <td>{song.title}</td>
       <td className="text-center">{song.genre.name}</td>
-      <td className="text-center">{tuning.instrument.name}</td>
-      <td className="text-center">{tuning.name}</td>
+      <td className="text-center">{tuning?.instrument.name}</td>
+      <td className="text-center">{tuning?.name}</td>
       <td className="text-center">
         <i className="far fa-plus-square fa-2x" onClick={addToSetlist}></i>
       </td>

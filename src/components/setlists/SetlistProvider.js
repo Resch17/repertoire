@@ -17,16 +17,27 @@ export const SetlistProvider = (props) => {
 
   const addSetlistItem = (setlistObj) => {
     const thisUsersSetlist = setlists.filter((sl) => sl.userId === userId);
-    const sorted = thisUsersSetlist.sort((a, b) => b.ordinal - a.ordinal);
-    const newObjOrdinal = sorted[0].ordinal + 1;
-    setlistObj.ordinal = newObjOrdinal;
-    return fetch('http://localhost:8088/setlists', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(setlistObj),
-    }).then(getSetlists);
+    if (thisUsersSetlist.length > 0) {
+      const sorted = thisUsersSetlist.sort((a, b) => b.ordinal - a.ordinal);
+      const newObjOrdinal = sorted[0].ordinal + 1;
+      setlistObj.ordinal = newObjOrdinal;
+      return fetch('http://localhost:8088/setlists', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(setlistObj),
+      }).then(getSetlists);
+    } else {
+      setlistObj.ordinal = 1;
+      return fetch('http://localhost:8088/setlists', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(setlistObj),
+      }).then(getSetlists);
+    }
   };
 
   const updateSetlistItem = (setlistObj) => {
@@ -39,8 +50,16 @@ export const SetlistProvider = (props) => {
     }).then(getSetlists);
   };
 
+  const deleteSetlistItem = (setlistId) => {
+    return fetch(`http://localhost:8088/setlists/${setlistId}`, {
+      method: 'DELETE',
+    }).then(getSetlists)
+  };
+
   return (
-    <SetlistContext.Provider value={{ setlists, getSetlists, addSetlistItem, updateSetlistItem }}>
+    <SetlistContext.Provider
+      value={{ setlists, getSetlists, addSetlistItem, updateSetlistItem, deleteSetlistItem }}
+    >
       {props.children}
     </SetlistContext.Provider>
   );
