@@ -38,6 +38,7 @@ export const SongForm = () => {
   });
 
   const [filteredArtists, setFilteredArtists] = useState([]);
+  const [selectedInstrument, setSelectedInstrument] = useState(null);
 
   useEffect(() => {
     getArtists().then(getGenres).then(getInstruments).then(getTunings);
@@ -60,6 +61,10 @@ export const SongForm = () => {
     let selectedVal = evt.target.value;
     if (evt.target.id.includes('Id')) {
       selectedVal = parseInt(selectedVal);
+    }
+
+    if (evt.target.id.includes('instrument')) {
+      setSelectedInstrument(selectedVal);
     }
 
     newSong[evt.target.id] = selectedVal;
@@ -225,15 +230,18 @@ export const SongForm = () => {
                 value={song.tuningId}
                 onChange={handleControlledInputChange}
                 name="tuningId"
+                disabled={!selectedInstrument}
                 id="tuningId"
                 className="form-select"
               >
                 <option value="0">Select a tuning...</option>
-                {tunings.map((t) => (
-                  <option key={t.id} value={t.id}>
-                    {t.name}
-                  </option>
-                ))}
+                {tunings
+                  .filter((t) => t.instrumentId === selectedInstrument)
+                  .map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.name}
+                    </option>
+                  ))}
               </select>
             </div>
 
