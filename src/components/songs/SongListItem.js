@@ -2,13 +2,16 @@ import React, { useEffect, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { SongContext } from './SongProvider';
 import { UserContext } from '../users/UserProvider';
+import { SetlistContext } from '../setlists/SetlistProvider';
 import './Song.css';
 
 export const SongListItem = ({ song, tuning }) => {
   const history = useHistory();
   const { setSearchTerms } = useContext(SongContext);
+  const { addSetlistItem } = useContext(SetlistContext);
   const { users } = useContext(UserContext);
   const songUser = users.find((u) => u.id === song.userId);
+  const userId = parseInt(localStorage.getItem('rep_user'));
 
   const { songId } = useParams();
 
@@ -27,6 +30,13 @@ export const SongListItem = ({ song, tuning }) => {
     }
   };
 
+  const addToSetlist = () => {
+    addSetlistItem({
+      userId,
+      songId: song.id,
+    });
+  };
+
   useEffect(() => {
     scrollControl();
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -35,18 +45,27 @@ export const SongListItem = ({ song, tuning }) => {
     <tr
       className={selectedClass(song.id)}
       id={song.id}
-      onClick={() => {
-        setSearchTerms('');
-        history.push(`/songs/detail/${song.id}`);
+      onClick={(evt) => {
+        if (!evt.target.id.startsWith('addToSetlist')) {
+          setSearchTerms('');
+          history.push(`/songs/detail/${song.id}`);
+        }
       }}
     >
       <td>{song.artist.name}</td>
       <td>{song.title}</td>
       <td className="text-center">{song.genre.name}</td>
-      <td className="text-center">{tuning.instrument.name}</td>
-      <td className="text-center">{tuning.name}</td>
+      <td className="text-center">{tuning?.instrument.name}</td>
+      <td className="text-center">{tuning?.name}</td>
       <td className="text-center">
-        <i className="far fa-plus-square fa-2x"></i>
+        <i
+          className="far fa-plus-square fa-2x"
+          id={`addToSetlist--${song.id}`}
+          onClick={() => {
+            addToSetlist();
+            history.push('/setlist');
+          }}
+        ></i>
       </td>
       <td className="text-center">
         <a href={song.url} target="_blank" rel="noreferrer">

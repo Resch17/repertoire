@@ -29,7 +29,10 @@ export const UserProvider = (props) => {
   const getUsers = () => {
     return fetch('http://localhost:8088/users')
       .then((res) => res.json())
-      .then(setUsers);
+      .then((parsed) => {
+        setUsers(parsed);
+        return parsed;
+      });
   };
 
   return (
