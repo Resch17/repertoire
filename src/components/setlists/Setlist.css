@@ -1,3 +1,10 @@
+.empty-setlist-text {
+  text-align: center;
+  color: var(--accent-text-color);
+  margin-top: 7em;
+  font-size: 40px;
+}
+
 .setlist-container {
   width: 60%;
   margin: 2em auto;
@@ -14,6 +21,33 @@
   margin: 7px auto 10px;
   text-align: center;
   border-bottom: 4px solid var(--background-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+}
+
+.setlist-toprow__clear {
+  background-color: var(--accent-text-color);
+  color: var(--primary-text-color);
+  font-family: var(--heading-font);
+  font-size: 20px;
+  padding: 3px 9px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.setlist-toprow__print {
+  cursor: pointer;
+}
+
+.setlist-toprow__print:hover {
+  color: var(--accent-text-color);
+}
+
+.setlist-toprow__clear:hover {
+  background-color: var(--secondary-background-color);
+  color: var(--accent-text-color);
 }
 
 .setlist-list {

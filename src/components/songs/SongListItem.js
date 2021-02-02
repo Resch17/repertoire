@@ -45,9 +45,11 @@ export const SongListItem = ({ song, tuning }) => {
     <tr
       className={selectedClass(song.id)}
       id={song.id}
-      onClick={() => {
-        setSearchTerms('');
-        history.push(`/songs/detail/${song.id}`);
+      onClick={(evt) => {
+        if (!evt.target.id.startsWith('addToSetlist')) {
+          setSearchTerms('');
+          history.push(`/songs/detail/${song.id}`);
+        }
       }}
     >
       <td>{song.artist.name}</td>
@@ -56,7 +58,14 @@ export const SongListItem = ({ song, tuning }) => {
       <td className="text-center">{tuning?.instrument.name}</td>
       <td className="text-center">{tuning?.name}</td>
       <td className="text-center">
-        <i className="far fa-plus-square fa-2x" onClick={addToSetlist}></i>
+        <i
+          className="far fa-plus-square fa-2x"
+          id={`addToSetlist--${song.id}`}
+          onClick={() => {
+            addToSetlist();
+            history.push('/setlist');
+          }}
+        ></i>
       </td>
       <td className="text-center">
         <a href={song.url} target="_blank" rel="noreferrer">

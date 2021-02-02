@@ -96,11 +96,15 @@ export const Setlist = () => {
       <>
         <div className="setlist-container">
           <div className="setlist-toprow">
+            <div className="setlist-toprow__clear">Clear Setlist</div>
             {thisUser ? (
               <h1>{thisUser?.username}'s Setlist</h1>
             ) : (
               <h1>Your Setlist</h1>
             )}
+            <div className="setlist-toprow__print">
+              <i className="fas fa-print fa-2x"></i>
+            </div>
           </div>
           <div className="setlist-list">
             {setlist
@@ -126,7 +130,7 @@ export const Setlist = () => {
   } else {
     return (
       <>
-        <h1>Add songs to your setlist from Songs list!</h1>
+        <h1 className="empty-setlist-text">Add songs to your setlist from Songs list!</h1>
       </>
     );
   }
