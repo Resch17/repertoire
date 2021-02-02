@@ -63,10 +63,12 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* End switch CSS */
+
 .tuner__instrument-select {
   display: flex;
   width: 40%;
-  margin: 3em auto 0;
+  margin: 1.5em auto;
   justify-content: center;
   align-items: center;
 }
@@ -78,6 +80,30 @@ input:checked + .slider:before {
   font-size: 30px;
 }
 
+.tuner__tuning-select {
+  display: flex;
+  flex-direction: column;
+}
+
+.tuner__tuning-select label {
+  font-family: var(--heading-font);
+  color: var(--accent-text-color);
+  padding-left: 8px;
+}
+
+.tuner__tuning-select select {
+  width: 220px;
+  height: 25px;
+  background-color: var(--primary-text-color);
+  color: var(--background-color);
+  border: none;
+  outline: none;
+  font-family: var(--body-font);
+  padding: 0 0.5em;
+  font-size: 17px;
+  border-radius: 5px;
+}
+
 .tuner-note {
   text-shadow: var(--accent-drop-shadow);
   cursor: pointer;
@@ -87,3 +113,68 @@ input:checked + .slider:before {
   color: var(--accent-text-color);
 }
 
+.tuner h3 {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 28px;
+  text-shadow: var(--accent-drop-shadow);
+}
+
+.tuner h4 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+/* Guitar Tuner */
+
+.guitar-headstock {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 630px;
+  background-color: var(--secondary-background-color);
+  padding: 0 1em;
+  border-radius: 15px;
+}
+
+.guitar-headstock__image {
+  margin: 0 2em;
+}
+
+.guitar-headstock__notes {
+  display: flex;
+  flex-direction: column;
+  padding-top: 77px;
+  font-size: 30px;
+}
+
+.guitar-headstock__notes h1:nth-of-type(2),
+.guitar-headstock__notes h1:nth-of-type(3) {
+  margin-top: 14px;
+}
+
+/* Bass Tuner */
+
+.bass-headstock {
+  display: flex;
+  height: 630px;
+  background-color: var(--secondary-background-color);
+  padding: 2em 1.5em 0;
+  border-radius: 15px;
+}
+
+.bass-notes {
+  z-index: 999;
+  transform: rotate(21deg);
+  margin-right: 1em;
+}
+
+.bass-notes h1 {
+  font-size: 50px;
+  transform: rotate(-21deg);
+  padding: 10px;
+}
+
+.bass-image {
+  z-index: 50;
+}

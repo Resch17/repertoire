@@ -6,7 +6,7 @@ export const BassTuning = ({ tuning, tones }) => {
   const tone3 = tones.find((t) => tuning.string3toneId === t.id);
   const tone4 = tones.find((t) => tuning.string4toneId === t.id);
 
-  const toneArray = [tone1, tone2, tone3, tone4];
+  const toneArray = [tone4, tone3, tone2, tone1];
 
   const notePlayer = (path) => {
     const audio = new Audio(`${path}`);
@@ -15,22 +15,28 @@ export const BassTuning = ({ tuning, tones }) => {
 
   return (
     <>
-      <h1>BASS HEADSTOCK!</h1>
-      {toneArray.map((t) => {
-        return (
-          <h1
-            key={t.id}
-            className="tuner-note"
-            onClick={() => {
-              if (t.path) {
-                notePlayer(t.path);
-              }
-            }}
-          >
-            {t?.note}
-          </h1>
-        );
-      })}
+      <div className="bass-headstock">
+        <div className="bass-notes">
+          {toneArray.map((t) => {
+            return (
+              <h1
+                key={t.id}
+                className="tuner-note"
+                onClick={() => {
+                  if (t.path) {
+                    notePlayer(t.path);
+                  }
+                }}
+              >
+                {t?.note}
+              </h1>
+            );
+          })}
+        </div>
+        <div className="bass-image">
+          <img src="/images/bass-headstock.png" alt="Bass Tuner" />
+        </div>
+      </div>
     </>
   );
 };
