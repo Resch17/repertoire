@@ -9,7 +9,7 @@ import './Setlist.css';
 export const Setlist = () => {
   const userId = parseInt(localStorage.getItem('rep_user'));
   const { activeLinkSet, getUsers, users } = useContext(UserContext);
-  const { getSetlists } = useContext(SetlistContext);
+  const { getSetlists, updateSetlistItem } = useContext(SetlistContext);
   const { getSongs, songs } = useContext(SongContext);
   const [setlist, setSetlist] = useState([]);
   const [thisUser, setThisUser] = useState({});
@@ -29,6 +29,42 @@ export const Setlist = () => {
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const [dragId, setDragId] = useState();
+
+  const handleDrag = (evt) => {
+    setDragId(evt.currentTarget.id);
+  };
+
+  const handleDrop = (evt) => {
+    const newSetlist = [...setlist];
+    const dragItem = newSetlist.find((sl) => sl.id === parseInt(dragId));
+    const dropItem = newSetlist.find(
+      (sl) => sl.id === parseInt(evt.currentTarget.id)
+    );
+
+    const dragItemOrdinal = dragItem.ordinal;
+    const dropItemOrdinal = dropItem.ordinal;
+
+    const newSetlistState = newSetlist.map((sl) => {
+      if (sl.id === parseInt(dragId)) {
+        sl.ordinal = dropItemOrdinal;
+      }
+      if (sl.id === parseInt(evt.currentTarget.id)) {
+        sl.ordinal = dragItemOrdinal;
+      }
+      return sl;
+    });
+
+    setSetlist(newSetlistState);
+    changeAPIsetlist(setlist);
+  };
+
+  const changeAPIsetlist = () => {
+    setlist.forEach((sl) => {
+      updateSetlistItem(sl);
+    });
+  };
+
   if (setlist.length > 0) {
     return (
       <>
@@ -45,7 +81,15 @@ export const Setlist = () => {
               .sort((a, b) => a.ordinal - b.ordinal)
               .map((item) => {
                 const song = songs.find((s) => s.id === item.songId);
-                return <SetlistItem key={song.id} song={song} />;
+                return (
+                  <SetlistItem
+                    key={song.id}
+                    song={song}
+                    id={item.id}
+                    handleDrag={handleDrag}
+                    handleDrop={handleDrop}
+                  />
+                );
               })}
           </div>
         </div>

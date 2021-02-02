@@ -29,8 +29,18 @@ export const SetlistProvider = (props) => {
     }).then(getSetlists);
   };
 
+  const updateSetlistItem = (setlistObj) => {
+    return fetch(`http://localhost:8088/setlists/${setlistObj.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(setlistObj),
+    }).then(getSetlists);
+  };
+
   return (
-    <SetlistContext.Provider value={{ setlists, getSetlists, addSetlistItem }}>
+    <SetlistContext.Provider value={{ setlists, getSetlists, addSetlistItem, updateSetlistItem }}>
       {props.children}
     </SetlistContext.Provider>
   );
