@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { UserContext } from '../users/UserProvider';
 import { SongContext } from '../songs/SongProvider';
 import { SetlistContext } from './SetlistProvider';
 import { SetlistItem } from './SetlistItem';
+import ReactToPrint from 'react-to-print';
 import './Setlist.css';
 
 export const Setlist = () => {
@@ -14,6 +15,7 @@ export const Setlist = () => {
   const { getSongs, songs } = useContext(SongContext);
   const [setlist, setSetlist] = useState([]);
   const [thisUser, setThisUser] = useState({});
+  const printRef = useRef();
 
   useEffect(() => {
     activeLinkSet();
@@ -113,11 +115,28 @@ export const Setlist = () => {
             ) : (
               <h1>Your Setlist</h1>
             )}
-            <div className="setlist-toprow__print">
-              <i className="fas fa-print fa-2x"></i>
-            </div>
+            <ReactToPrint
+              trigger={() => (
+                <div className="setlist-toprow__print">
+                  <i className="fas fa-print fa-2x"></i>
+                </div>
+              )}
+              content={() => printRef.current}
+              pageStyle={
+                `
+                .setlist-list {
+                  margin-top: 3em;
+                }
+                .setlist-list .setlist-item h1 {
+                  color: #000000;
+                  font-size: 26px;
+                  text-align: center;
+                }
+                `
+              }
+            />
           </div>
-          <div className="setlist-list">
+          <div className="setlist-list" ref={printRef}>
             {setlist
               .sort((a, b) => a.ordinal - b.ordinal)
               .map((item) => {
