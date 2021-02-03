@@ -107,7 +107,13 @@ export const Setlist = () => {
       <>
         <div className="setlist-container">
           <div className="setlist-toprow">
-            <div className="setlist-toprow__clear" onClick={clearSetlist}>
+            <div
+              className="setlist-toprow__clear"
+              onClick={() => {
+                window.confirm('Are you sure you want to clear the setlist?') &&
+                  clearSetlist();
+              }}
+            >
               Clear
             </div>
             {thisUser ? (
@@ -122,18 +128,14 @@ export const Setlist = () => {
                 </div>
               )}
               content={() => printRef.current}
-              pageStyle={
-                `
-                .setlist-list {
+              pageStyle={`.setlist-list {
                   margin-top: 3em;
                 }
                 .setlist-list .setlist-item h1 {
                   color: #000000;
                   font-size: 26px;
                   text-align: center;
-                }
-                `
-              }
+                }`}
             />
           </div>
           <div className="setlist-list" ref={printRef}>
