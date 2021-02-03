@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { NoteContext } from './NoteProvider';
+import { ConfirmDialog } from '../utilities/ConfirmDialog';
 import './Note.css';
 
 export const Note = ({ note }) => {
@@ -13,6 +14,8 @@ export const Note = ({ note }) => {
     });
   };
 
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
   return (
     <article className="note">
       <div className="note__text">{note.text}</div>
@@ -21,11 +24,18 @@ export const Note = ({ note }) => {
         <i
           className="fas fa-trash-alt fa-2x"
           onClick={() => {
-            window.confirm('Are you sure you want to delete this note?') &&
-              handleDelete();
+            setConfirmOpen(true);
           }}
         ></i>
       </div>
+      <ConfirmDialog
+        title="Delete note?"
+        open={confirmOpen}
+        setOpen={setConfirmOpen}
+        onConfirm={handleDelete}
+      >
+        Are you sure you want to delete this note?
+      </ConfirmDialog>
     </article>
   );
 };

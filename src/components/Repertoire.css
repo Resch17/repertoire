@@ -34,6 +34,7 @@ h4 {
 body {
   background-color: var(--background-color);
   color: var(--primary-text-color);
+  font-family: var(--body-font);
 }
 
 a {
