@@ -8,7 +8,9 @@ import './Setlist.css';
 export const Setlist = () => {
   const userId = parseInt(localStorage.getItem('rep_user'));
   const { activeLinkSet, getUsers, users } = useContext(UserContext);
-  const { getSetlists, updateSetlistItem } = useContext(SetlistContext);
+  const { getSetlists, updateSetlistItem, deleteSetlistItem } = useContext(
+    SetlistContext
+  );
   const { getSongs, songs } = useContext(SongContext);
   const [setlist, setSetlist] = useState([]);
   const [thisUser, setThisUser] = useState({});
@@ -91,12 +93,21 @@ export const Setlist = () => {
     });
   };
 
+  const clearSetlist = () => {
+    setlist.forEach((sl) => {
+      deleteSetlistItem(sl.id);
+    });
+    setSetlist([]);
+  };
+
   if (setlist.length > 0) {
     return (
       <>
         <div className="setlist-container">
           <div className="setlist-toprow">
-            <div className="setlist-toprow__clear">Clear Setlist</div>
+            <div className="setlist-toprow__clear" onClick={clearSetlist}>
+              Clear
+            </div>
             {thisUser ? (
               <h1>{thisUser?.username}'s Setlist</h1>
             ) : (
@@ -130,7 +141,9 @@ export const Setlist = () => {
   } else {
     return (
       <>
-        <h1 className="empty-setlist-text">Add songs to your setlist from Songs list!</h1>
+        <h1 className="empty-setlist-text">
+          Add songs to your setlist from Songs list!
+        </h1>
       </>
     );
   }

@@ -12,6 +12,7 @@ export const Note = ({ note }) => {
       history.push(`/songs/detail/${note.songId}`);
     });
   };
+  
   return (
     <article className="note">
       <div className="note__text">{note.text}</div>
