@@ -3,6 +3,7 @@ import { UserContext } from '../users/UserProvider';
 import { SongContext } from '../songs/SongProvider';
 import { SetlistContext } from './SetlistProvider';
 import { SetlistItem } from './SetlistItem';
+import { ConfirmDialog } from '../utilities/ConfirmDialog';
 import ReactToPrint from 'react-to-print';
 import './Setlist.css';
 
@@ -15,6 +16,7 @@ export const Setlist = () => {
   const { getSongs, songs } = useContext(SongContext);
   const [setlist, setSetlist] = useState([]);
   const [thisUser, setThisUser] = useState({});
+  const [confirmOpen, setConfirmOpen] = useState(false);
   const printRef = useRef();
 
   useEffect(() => {
@@ -110,8 +112,7 @@ export const Setlist = () => {
             <div
               className="setlist-toprow__clear"
               onClick={() => {
-                window.confirm('Are you sure you want to clear the setlist?') &&
-                  clearSetlist();
+                setConfirmOpen(true);
               }}
             >
               Clear
@@ -157,6 +158,14 @@ export const Setlist = () => {
               })}
           </div>
         </div>
+        <ConfirmDialog
+          title="Clear setlist?"
+          open={confirmOpen}
+          setOpen={setConfirmOpen}
+          onConfirm={clearSetlist}
+        >
+          Are you sure you want to clear your setlist?
+        </ConfirmDialog>
       </>
     );
   } else {
