@@ -161,6 +161,7 @@
 .song-display__buttons {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .song-display__buttons a,

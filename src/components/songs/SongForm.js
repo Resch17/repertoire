@@ -98,7 +98,8 @@ export const SongForm = () => {
       song.instrumentId === 0 ||
       song.tuningId === 0 ||
       song.url === '' ||
-      song.title === ''
+      song.title === '' ||
+      song.youtube === ''
     ) {
       window.alert('Please fill in all fields');
     } else {

@@ -43,7 +43,7 @@ export const Navbar = (props) => {
         <div className="navbar__item--addTab">
           <h2>
             <Link className="navbar__link" to="/songs/add">
-              + Add a tab
+              + Add a Song
             </Link>
           </h2>
         </div>

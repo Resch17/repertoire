@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import { UserContext } from '../users/UserProvider';
 import { SongContext } from '../songs/SongProvider';
 import { SetlistContext } from './SetlistProvider';
@@ -18,6 +19,7 @@ export const Setlist = () => {
   const [thisUser, setThisUser] = useState({});
   const [confirmOpen, setConfirmOpen] = useState(false);
   const printRef = useRef();
+  const history = useHistory();
 
   useEffect(() => {
     activeLinkSet();
@@ -171,8 +173,12 @@ export const Setlist = () => {
   } else {
     return (
       <>
-        <h1 className="empty-setlist-text">
-          Add songs to your setlist from Songs list!
+        <h1
+          className="empty-setlist-text"
+          style={{ cursor: 'pointer' }}
+          onClick={() => history.push('/')}
+        >
+          Add songs to your setlist from the Songs list!
         </h1>
       </>
     );
