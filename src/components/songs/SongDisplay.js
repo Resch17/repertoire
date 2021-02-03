@@ -23,7 +23,9 @@ export const SongDisplay = () => {
   const { getNotes, deleteNote } = useContext(NoteContext);
   const { getSongById, deleteSong } = useContext(SongContext);
   const { getInstruments } = useContext(InstrumentContext);
-  const { getSetlists, deleteSetlistItem } = useContext(SetlistContext);
+  const { getSetlists, deleteSetlistItem, updateSetlistItem } = useContext(
+    SetlistContext
+  );
 
   useEffect(() => {
     getNotes().then(() => {
@@ -39,26 +41,36 @@ export const SongDisplay = () => {
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDelete = () => {
-    deleteSong(songId).then(() => {
-      getNotes()
-        .then((notes) => {
-          const thisSongNotes = notes.filter((n) => n.songId === songId);
-          thisSongNotes.forEach((note) => {
-            deleteNote(note.id);
-          });
-        })
-        .then(() => {
-          getSetlists().then((setlists) => {
-            const thisSongSetlists = setlists.filter(
-              (sl) => sl.songId === songId
-            );
-            thisSongSetlists.forEach((sl) => {
-              deleteSetlistItem(sl.id);
+    getNotes()
+      .then((notes) => {
+        const thisSongNotes = notes.filter(
+          (n) => n.songId === parseInt(songId)
+        );
+        thisSongNotes.forEach((note) => {
+          deleteNote(note.id);
+        });
+      })
+      .then(() => {
+        getSetlists().then((setlists) => {
+          const thisSongSetlistItems = setlists.filter(
+            (sl) => sl.songId === parseInt(songId)
+          );
+          thisSongSetlistItems.forEach((sli) => {
+            setlists.forEach((sl) => {
+              if (sl.userId === sli.userId && sl.ordinal > sli.ordinal) {
+                sl.ordinal = sl.ordinal - 1;
+                updateSetlistItem(sl);
+              }
             });
+            deleteSetlistItem(sli.id);
           });
         });
-    });
-    history.push('/');
+      })
+      .then(() => {
+        deleteSong(songId).then(() => {
+          history.push('/');
+        });
+      });
   };
 
   return (
@@ -110,7 +122,11 @@ export const SongDisplay = () => {
         title="Delete song?"
         open={confirmOpen}
         setOpen={setConfirmOpen}
-        onConfirm={handleDelete}
+        onConfirm={() => {
+          handleDelete();
+
+          // history.push('/');
+        }}
       >
         Are you sure you want to delete this song?
       </ConfirmDialog>
