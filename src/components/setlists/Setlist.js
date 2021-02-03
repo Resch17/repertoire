@@ -96,7 +96,7 @@ export const Setlist = () => {
       <>
         <div className="setlist-container">
           <div className="setlist-toprow">
-            <div className="setlist-toprow__clear">Clear Setlist</div>
+            <div className="setlist-toprow__clear">Clear</div>
             {thisUser ? (
               <h1>{thisUser?.username}'s Setlist</h1>
             ) : (

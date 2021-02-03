@@ -22,9 +22,13 @@
   text-align: center;
   border-bottom: 4px solid var(--background-color);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 1em;
+}
+
+.setlist-toprow h1 {
+  margin: 0 25%;
 }
 
 .setlist-toprow__clear {
@@ -57,10 +61,15 @@
 .setlist-item {
   cursor: pointer;
   width: 88%;
-  text-align: left;
+  text-align: center;
   margin: 0 auto;
   display: flex;
   align-items: center;
+}
+
+.setlist-item h1 {
+  text-align: center;
+  width: 100%;
 }
 
 .setlist-item:hover {
@@ -70,11 +79,8 @@
 
 .setlist-item__handle {
   color: var(--background-color);
-  background-color: var(--secondary-background-color);
-  opacity: 85%;
   padding: 0 10px;
   text-align: center;
-  border-radius: 8px;
   margin-right: 1em;
   margin-left: 5px;
 }
@@ -82,6 +88,8 @@
 .setlist-item__delete-button {
   color: var(--accent-text-color);
   margin-left: 3em;
+  position: absolute;
+  right: 25%;
 }
 
 .setlist-item__delete-button:hover {
