@@ -30,6 +30,12 @@ export const SongProvider = (props) => {
     }).then(getSongs);
   };
 
+  const deleteSong = (id) => {
+    return fetch(`http://localhost:8088/songs/${id}`, {
+      method: 'DELETE',
+    }).then(getSongs);
+  }
+
   return (
     <SongContext.Provider
       value={{
@@ -39,6 +45,7 @@ export const SongProvider = (props) => {
         setSearchTerms,
         getSongById,
         addSong,
+        deleteSong
       }}
     >
       {props.children}
