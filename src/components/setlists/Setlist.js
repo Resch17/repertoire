@@ -92,7 +92,7 @@ export const Setlist = () => {
     setlist.forEach((sl) => {
       if (sl.affected) {
         delete sl.affected;
-        updateSetlistItem(sl);
+        updateSetlistItem(sl).then(getSetlists);
       }
     });
   };
