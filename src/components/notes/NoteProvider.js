@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { apiUrl } from '../utilities/Settings.js';
 
 export const NoteContext = createContext();
 
@@ -6,7 +7,7 @@ export const NoteProvider = (props) => {
   const [notes, setNotes] = useState([]);
 
   const getNotes = () => {
-    return fetch('http://localhost:8088/notes')
+    return fetch(`${apiUrl}/notes`)
       .then((res) => res.json())
       .then((notes) => {
         setNotes(notes);
@@ -15,13 +16,13 @@ export const NoteProvider = (props) => {
   };
 
   const deleteNote = (noteId) => {
-    return fetch(`http://localhost:8088/notes/${noteId}`, {
+    return fetch(`${apiUrl}/notes/${noteId}`, {
       method: 'DELETE',
     }).then(getNotes);
   };
 
   const addNote = (noteObj) => {
-    return fetch('http://localhost:8088/notes', {
+    return fetch(`${apiUrl}/notes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { apiUrl } from '../utilities/Settings.js';
 
 export const TuningContext = createContext();
 
@@ -6,7 +7,7 @@ export const TuningProvider = (props) => {
   const [tunings, setTunings] = useState([]);
 
   const getTunings = () => {
-    return fetch('http://localhost:8088/tunings?_expand=instrument')
+    return fetch(`${apiUrl}/tunings?_expand=instrument`)
       .then((res) => res.json())
       .then((parsed) => {
         setTunings(parsed);

@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { apiUrl } from '../utilities/Settings.js';
 
 export const SongContext = createContext();
 
@@ -8,7 +9,7 @@ export const SongProvider = (props) => {
 
   const getSongs = () => {
     return fetch(
-      'http://localhost:8088/songs?_expand=artist&_expand=genre&_expand=instrument'
+      `${apiUrl}/songs?_expand=artist&_expand=genre&_expand=instrument`
     )
       .then((res) => res.json())
       .then(setSongs);
@@ -16,12 +17,12 @@ export const SongProvider = (props) => {
 
   const getSongById = (id) => {
     return fetch(
-      `http://localhost:8088/songs/${id}?_expand=artist&_expand=genre&_expand=tuning&_expand=instrument`
+      `${apiUrl}/songs/${id}?_expand=artist&_expand=genre&_expand=tuning&_expand=instrument`
     ).then((res) => res.json());
   };
 
   const addSong = (songObj) => {
-    return fetch('http://localhost:8088/songs', {
+    return fetch(`${apiUrl}/songs`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ export const SongProvider = (props) => {
   };
 
   const deleteSong = (id) => {
-    return fetch(`http://localhost:8088/songs/${id}`, {
+    return fetch(`${apiUrl}/songs/${id}`, {
       method: 'DELETE',
     }).then(getSongs);
   }

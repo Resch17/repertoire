@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { apiUrl } from '../utilities/Settings.js';
 
 export const ArtistContext = createContext();
 
@@ -9,7 +10,7 @@ export const ArtistProvider = (props) => {
   const [addedArtist, setAddedArtist] = useState(null);
 
   const getArtists = () => {
-    return fetch('http://localhost:8088/artists')
+    return fetch(`${apiUrl}/artists`)
       .then((res) => res.json())
       .then((res) => {
         setArtists(res);
@@ -18,7 +19,7 @@ export const ArtistProvider = (props) => {
   };
 
   const addArtist = (artistObj) => {
-    return fetch('http://localhost:8088/artists', {
+    return fetch(`${apiUrl}/artists`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

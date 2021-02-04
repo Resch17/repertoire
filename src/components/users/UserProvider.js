@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { apiUrl } from '../utilities/Settings.js';
 
 export const UserContext = createContext();
 
@@ -27,7 +28,7 @@ export const UserProvider = (props) => {
   };
 
   const getUsers = () => {
-    return fetch('http://localhost:8088/users')
+    return fetch(`${apiUrl}/users`)
       .then((res) => res.json())
       .then((parsed) => {
         setUsers(parsed);
