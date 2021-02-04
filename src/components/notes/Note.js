@@ -20,7 +20,6 @@ export const Note = ({ note }) => {
     <article className="note">
       <div className="note__text">{note.text}</div>
       <div className="note__buttons">
-        <i className="fas fa-pencil-alt fa-2x"></i>
         <i
           className="fas fa-trash-alt fa-2x"
           onClick={() => {
