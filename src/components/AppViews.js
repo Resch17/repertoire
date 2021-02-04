@@ -41,6 +41,10 @@ export const ApplicationViews = () => (
                           <SongList />
                           <SongDisplay />
                         </Route>
+                        <Route exact path="/songs/edit/:editSongId(\d+)">
+                          <SongList />
+                          <SongForm />
+                        </Route>
 
                         <Route exact path="/songs/add">
                           <SongList />

@@ -18,7 +18,7 @@ export const SongProvider = (props) => {
   const getSongById = (id) => {
     return fetch(
       `${apiUrl}/songs/${id}?_expand=artist&_expand=genre&_expand=tuning&_expand=instrument`
-    ).then((res) => res.json());
+    ).then((res) => res.json()).then((song)=>song);
   };
 
   const addSong = (songObj) => {
@@ -37,6 +37,16 @@ export const SongProvider = (props) => {
     }).then(getSongs);
   }
 
+  const updateSong = (song) => {
+    return fetch(`http://localhost:8088/songs/${song.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(song),
+    }).then(getSongs);
+  }
+
   return (
     <SongContext.Provider
       value={{
@@ -46,7 +56,8 @@ export const SongProvider = (props) => {
         setSearchTerms,
         getSongById,
         addSong,
-        deleteSong
+        deleteSong,
+        updateSong
       }}
     >
       {props.children}

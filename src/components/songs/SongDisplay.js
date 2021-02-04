@@ -100,6 +100,14 @@ export const SongDisplay = () => {
                 >
                   <i className="fas fa-trash-alt fa-2x"></i>
                 </div>
+                <div
+                  className="song-display__buttons-edit"
+                  onClick={() => {
+                    history.push(`/songs/edit/${song.id}`);
+                  }}
+                >
+                  <i className="fas fa-pencil-alt fa-2x"></i>
+                </div>
               </div>
             ) : null}
           </div>
