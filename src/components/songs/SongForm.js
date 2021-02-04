@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { SongContext } from './SongProvider';
 import { ArtistContext } from '../artists/ArtistProvider';
 import { ArtistList } from '../artists/ArtistList';
@@ -9,7 +9,7 @@ import { TuningContext } from '../tunings/TuningProvider';
 import './SongForm.css';
 
 export const SongForm = () => {
-  const { addSong } = useContext(SongContext);
+  const { addSong, getSongById, updateSong } = useContext(SongContext);
   const {
     getArtists,
     artists,
@@ -20,6 +20,8 @@ export const SongForm = () => {
   const { getGenres, genres } = useContext(GenreContext);
   const { getInstruments, instruments } = useContext(InstrumentContext);
   const { getTunings, tunings } = useContext(TuningContext);
+
+  const { editSongId } = useParams();
 
   const userId = parseInt(localStorage.getItem('rep_user'));
   const history = useHistory();
@@ -37,11 +39,28 @@ export const SongForm = () => {
     youtube: '',
   });
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const [filteredArtists, setFilteredArtists] = useState([]);
   const [selectedInstrument, setSelectedInstrument] = useState(null);
 
   useEffect(() => {
-    getArtists().then(getGenres).then(getInstruments).then(getTunings);
+    getArtists()
+      .then(getGenres)
+      .then(getInstruments)
+      .then(getTunings)
+      .then(() => {
+        if (editSongId) {
+          getSongById(editSongId).then((parsed) => {
+            setSong(parsed);
+            setSelectedArtist(artists.find((a) => a.id === parsed.artistId));
+            setSelectedInstrument(parsed.instrumentId);
+            setIsLoading(false);
+          });
+        } else {
+          setIsLoading(false);
+        }
+      });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -103,19 +122,37 @@ export const SongForm = () => {
     ) {
       window.alert('Please fill in all fields');
     } else {
-      addSong({
-        title: song.title,
-        artistId: selectedArtist.id,
-        genreId: song.genreId,
-        tuningId: song.tuningId,
-        instrumentId: song.instrumentId,
-        userId,
-        url: song.url,
-        youtube: song.youtube,
-      }).then(() => {
-        clearForm();
-        history.push('/');
-      });
+      setIsLoading(true);
+      if (editSongId) {
+        updateSong({
+          title: song.title,
+          artistId: selectedArtist.id,
+          genreId: song.genreId,
+          tuningId: song.tuningId,
+          instrumentId: song.instrumentId,
+          userId,
+          url: song.url,
+          youtube: song.youtube,
+          id: song.id,
+        }).then(() => {
+          clearForm();
+          history.push(`/songs/detail/${song.id}`);
+        });
+      } else {
+        addSong({
+          title: song.title,
+          artistId: selectedArtist.id,
+          genreId: song.genreId,
+          tuningId: song.tuningId,
+          instrumentId: song.instrumentId,
+          userId,
+          url: song.url,
+          youtube: song.youtube,
+        }).then(() => {
+          clearForm();
+          history.push('/');
+        });
+      }
     }
   };
 
@@ -132,6 +169,7 @@ export const SongForm = () => {
     });
     setFilteredArtists([]);
     setSelectedArtist(null);
+    setSelectedInstrument(null);
     artistTextbox.current.value = '';
   };
 
@@ -156,7 +194,9 @@ export const SongForm = () => {
         >
           X
         </div>
-        <h1 className="song-form__title">Add a Song</h1>
+        <h1 className="song-form__title">
+          {editSongId ? <>Edit a Song </> : <> Add a Song </>}
+        </h1>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
@@ -277,18 +317,21 @@ export const SongForm = () => {
           <button
             className="song-form__button-save"
             onClick={handleClickSaveSong}
+            disabled={isLoading}
           >
-            Save Song!
+            {editSongId ? <>Save Song!</> : <>Add song!</>}
           </button>
-          <button
-            className="song-form__button-clear"
-            onClick={(evt) => {
-              evt.preventDefault();
-              clearForm();
-            }}
-          >
-            Clear Form
-          </button>
+          {editSongId ? null : (
+            <button
+              className="song-form__button-clear"
+              onClick={(evt) => {
+                evt.preventDefault();
+                clearForm();
+              }}
+            >
+              Clear Form
+            </button>
+          )}
         </div>
       </form>
     </section>

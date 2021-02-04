@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { apiUrl } from '../utilities/Settings.js';
 
 export const SetlistContext = createContext();
 
@@ -7,7 +8,7 @@ export const SetlistProvider = (props) => {
   const userId = parseInt(localStorage.getItem('rep_user'));
 
   const getSetlists = () => {
-    return fetch('http://localhost:8088/setlists')
+    return fetch(`${apiUrl}/setlists`)
       .then((res) => res.json())
       .then((parsed) => {
         setSetlists(parsed);
@@ -21,7 +22,7 @@ export const SetlistProvider = (props) => {
       const sorted = thisUsersSetlist.sort((a, b) => b.ordinal - a.ordinal);
       const newObjOrdinal = sorted[0].ordinal + 1;
       setlistObj.ordinal = newObjOrdinal;
-      return fetch('http://localhost:8088/setlists', {
+      return fetch(`${apiUrl}/setlists`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ export const SetlistProvider = (props) => {
       }).then(getSetlists);
     } else {
       setlistObj.ordinal = 1;
-      return fetch('http://localhost:8088/setlists', {
+      return fetch(`${apiUrl}/setlists`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ export const SetlistProvider = (props) => {
   };
 
   const updateSetlistItem = (setlistObj) => {
-    return fetch(`http://localhost:8088/setlists/${setlistObj.id}`, {
+    return fetch(`${apiUrl}/setlists/${setlistObj.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +52,7 @@ export const SetlistProvider = (props) => {
   };
 
   const deleteSetlistItem = (setlistId) => {
-    return fetch(`http://localhost:8088/setlists/${setlistId}`, {
+    return fetch(`${apiUrl}/setlists/${setlistId}`, {
       method: 'DELETE',
     }).then(getSetlists)
   };

@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { apiUrl } from '../utilities/Settings.js';
 
 export const ColorContext = createContext();
 
@@ -7,7 +8,7 @@ export const ColorProvider = (props) => {
   const [themes, setThemes] = useState([]);
 
   const getColors = () => {
-    return fetch('http://localhost:8088/colors')
+    return fetch(`${apiUrl}/colors`)
       .then((res) => res.json())
       .then((parsed) => {
         setColors(parsed);
@@ -16,7 +17,7 @@ export const ColorProvider = (props) => {
   };
 
   const getThemes = () => {
-    return fetch('http://localhost:8088/themes')
+    return fetch(`${apiUrl}/themes`)
       .then((res) => res.json())
       .then((parsed) => {
         setThemes(parsed);

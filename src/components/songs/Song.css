@@ -167,7 +167,7 @@
 .song-display__buttons a,
 .song-display__buttons i {
   text-shadow: var(--accent-drop-shadow);
-  margin-bottom: 0.5em;
+  margin-bottom: 18px;
 }
 
 .song-display__buttons a:hover,
