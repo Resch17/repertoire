@@ -82,6 +82,10 @@
   margin: 0 5px;
 }
 
+.song-list__head-content div i {
+  color: var(--primary-text-color);
+}
+
 .song-list__body {
   font-family: var(--body-font);
 }
