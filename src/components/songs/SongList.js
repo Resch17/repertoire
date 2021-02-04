@@ -12,6 +12,8 @@ export const SongList = () => {
   const { getUsers, activeLinkSet } = useContext(UserContext);
 
   const [filteredSongs, setFiltered] = useState([]);
+  const [sorted, setSorted] = useState([]);
+  const [sortType, setSortType] = useState('artist');
 
   const { songId } = useParams();
 
@@ -21,6 +23,43 @@ export const SongList = () => {
     getTunings().then(getSongs).then(getUsers);
     activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const sortArray = (type) => {
+      const types = {
+        artist: 'artist',
+        artistDesc: 'artistDesc',
+        title: 'title',
+        titleDesc: 'titleDesc',
+        genre: 'genre',
+        genreDesc: 'genreDesc',
+        instrument: 'instrument',
+        instrumentDesc: 'instrumentDesc',
+      };
+      const sortProperty = types[type];
+      const sorted = [...filteredSongs].sort((a, b) => {
+        if (sortProperty === 'artist') {
+          return a.artist.name.localeCompare(b.artist.name);
+        } else if (sortProperty === 'artistDesc') {
+          return b.artist.name.localeCompare(a.artist.name);
+        } else if (sortProperty === 'genre') {
+          return a.genre.name.localeCompare(b.genre.name);
+        } else if (sortProperty === 'genreDesc') {
+          return b.genre.name.localeCompare(a.genre.name);
+        } else if (sortProperty === 'instrument') {
+          return a.instrument.name.localeCompare(b.instrument.name);
+        } else if (sortProperty === 'instrumentDesc') {
+          return b.instrument.name.localeCompare(a.instrument.name);
+        } else if (sortProperty === 'title') {
+          return a.title.localeCompare(b.title);
+        } else if (sortProperty === 'titleDesc') {
+          return b.title.localeCompare(a.title);
+        }
+      });
+      setSorted(sorted);
+    };
+    sortArray(sortType);
+  }, [sortType, filteredSongs]);
 
   useEffect(() => {
     if (searchTerms !== '') {
@@ -84,10 +123,54 @@ export const SongList = () => {
         <table className="song-list">
           <thead className="song-list__head">
             <tr>
-              <th>Artist</th>
-              <th>Song</th>
-              <th>Genre</th>
-              <th>Instrument</th>
+              <th
+                className="song-list__head-sortable"
+                onClick={() => {
+                  if (sortType === 'artist') {
+                    setSortType('artistDesc');
+                  } else {
+                    setSortType('artist');
+                  }
+                }}
+              >
+                Artist
+              </th>
+              <th
+                className="song-list__head-sortable"
+                onClick={() => {
+                  if (sortType === 'title') {
+                    setSortType('titleDesc');
+                  } else {
+                    setSortType('title');
+                  }
+                }}
+              >
+                Song
+              </th>
+              <th
+                className="song-list__head-sortable"
+                onClick={() => {
+                  if (sortType === 'genre') {
+                    setSortType('genreDesc');
+                  } else {
+                    setSortType('genre');
+                  }
+                }}
+              >
+                Genre
+              </th>
+              <th
+                className="song-list__head-sortable"
+                onClick={() => {
+                  if (sortType === 'instrument') {
+                    setSortType('instrumentDesc');
+                  } else {
+                    setSortType('instrument');
+                  }
+                }}
+              >
+                Instrument
+              </th>
               <th>Tuning</th>
               <th>Add to Setlist</th>
               <th>Link</th>
@@ -96,18 +179,10 @@ export const SongList = () => {
             </tr>
           </thead>
           <tbody className="song-list__body" style={tableStyle()}>
-            {filteredSongs
-              .sort((a, b) => a.artist.name.localeCompare(b.artist.name))
-              .map((s) => {
-                const tuning = tunings.find((t) => t.id === s.tuningId);
-                return (
-                  <SongListItem
-                    key={s.id}
-                    song={s}
-                    tuning={tuning}
-                  />
-                );
-              })}
+            {sorted.map((s) => {
+              const tuning = tunings.find((t) => t.id === s.tuningId);
+              return <SongListItem key={s.id} song={s} tuning={tuning} />;
+            })}
           </tbody>
         </table>
       </div>
