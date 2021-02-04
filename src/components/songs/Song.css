@@ -73,6 +73,15 @@
   height: 61px;
 }
 
+.song-list__head-content {
+  display: flex;
+  justify-content: center;
+}
+
+.song-list__head-content div {
+  margin: 0 5px;
+}
+
 .song-list__body {
   font-family: var(--body-font);
 }

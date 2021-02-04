@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { SongContext } from './SongProvider';
 import { TuningContext } from '../tunings/TuningProvider';
@@ -7,6 +7,14 @@ import { SongListItem } from './SongListItem';
 import { SongSearch } from './SongSearch';
 
 export const SongList = () => {
+  const artistTHasc = useRef();
+  const artistTHdesc = useRef();
+  const titleTHasc = useRef();
+  const titleTHdesc = useRef();
+  const genreTHasc = useRef();
+  const genreTHdesc = useRef();
+  const instrumentTHasc = useRef();
+  const instrumentTHdesc = useRef();
   const { songs, getSongs, searchTerms } = useContext(SongContext);
   const { tunings, getTunings } = useContext(TuningContext);
   const { getUsers, activeLinkSet } = useContext(UserContext);
@@ -54,6 +62,8 @@ export const SongList = () => {
           return a.title.localeCompare(b.title);
         } else if (sortProperty === 'titleDesc') {
           return b.title.localeCompare(a.title);
+        } else {
+          return a - b;
         }
       });
       setSorted(sorted);
@@ -106,6 +116,26 @@ export const SongList = () => {
     return randomInt + 1;
   };
 
+  const clearSorts = () => {
+    const sortRefs = [
+      artistTHasc,
+      artistTHdesc,
+      titleTHasc,
+      titleTHdesc,
+      genreTHasc,
+      genreTHdesc,
+      instrumentTHasc,
+      instrumentTHdesc,
+    ];
+    sortRefs.forEach((ref) => {
+      ref.current.classList.add('isHidden');
+    });
+  };
+
+  const unhideArrow = (ref) => {
+    ref.current.classList.remove('isHidden');
+  };
+
   return (
     <>
       <div className="top-row">
@@ -126,50 +156,115 @@ export const SongList = () => {
               <th
                 className="song-list__head-sortable"
                 onClick={() => {
+                  clearSorts();
                   if (sortType === 'artist') {
+                    unhideArrow(artistTHdesc);
                     setSortType('artistDesc');
                   } else {
+                    unhideArrow(artistTHasc);
                     setSortType('artist');
                   }
                 }}
               >
-                Artist
+                <div className="song-list__head-content">
+                  <div className="song-list__head-arrowup" ref={artistTHasc}>
+                    <i className="fas fa-arrow-up"></i>
+                  </div>
+                  Artist
+                  <div
+                    className="song-list__head-arrowdown isHidden"
+                    ref={artistTHdesc}
+                  >
+                    <i className="fas fa-arrow-down"></i>
+                  </div>
+                </div>
               </th>
               <th
                 className="song-list__head-sortable"
                 onClick={() => {
+                  clearSorts();
                   if (sortType === 'title') {
+                    unhideArrow(titleTHdesc);
                     setSortType('titleDesc');
                   } else {
+                    unhideArrow(titleTHasc);
                     setSortType('title');
                   }
                 }}
               >
-                Song
+                <div className="song-list__head-content">
+                  <div
+                    className="song-list__head-arrowup isHidden"
+                    ref={titleTHasc}
+                  >
+                    <i className="fas fa-arrow-up"></i>
+                  </div>
+                  Song
+                  <div
+                    className="song-list__head-arrowdown isHidden"
+                    ref={titleTHdesc}
+                  >
+                    <i className="fas fa-arrow-down"></i>
+                  </div>
+                </div>
               </th>
               <th
                 className="song-list__head-sortable"
                 onClick={() => {
+                  clearSorts();
                   if (sortType === 'genre') {
+                    unhideArrow(genreTHdesc);
                     setSortType('genreDesc');
                   } else {
+                    unhideArrow(genreTHasc);
                     setSortType('genre');
                   }
                 }}
               >
-                Genre
+                <div className="song-list__head-content">
+                  <div
+                    className="song-list__head-arrowup isHidden"
+                    ref={genreTHasc}
+                  >
+                    <i className="fas fa-arrow-up"></i>
+                  </div>
+                  Genre
+                  <div
+                    className="song-list__head-arrowdown isHidden"
+                    ref={genreTHdesc}
+                  >
+                    <i className="fas fa-arrow-down"></i>
+                  </div>
+                </div>
               </th>
               <th
                 className="song-list__head-sortable"
                 onClick={() => {
+                  clearSorts();
                   if (sortType === 'instrument') {
+                    unhideArrow(instrumentTHdesc);
                     setSortType('instrumentDesc');
                   } else {
+                    unhideArrow(instrumentTHasc);
                     setSortType('instrument');
                   }
                 }}
               >
-                Instrument
+                <div className="song-list__head-content">
+                  <div
+                    className="song-list__head-arrowup isHidden"
+                    ref={instrumentTHasc}
+                  >
+                    <i className="fas fa-arrow-up"></i>
+                  </div>
+                  Instrument
+                  <div
+                    className="song-list__head-arrowdown isHidden"
+                    ref={instrumentTHdesc}
+                  >
+                    <i className="fas fa-arrow-down"></i>
+                  </div>
+                </div>
               </th>
               <th>Tuning</th>
               <th>Add to Setlist</th>
