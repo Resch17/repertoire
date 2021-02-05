@@ -10,7 +10,7 @@ import './Setlist.css';
 
 export const Setlist = () => {
   const userId = parseInt(localStorage.getItem('rep_user'));
-  const { activeLinkSet, getUsers, users } = useContext(UserContext);
+  const { activeLinkSet } = useContext(UserContext);
   const {
     getSetlists,
     updateSetlistItem,
