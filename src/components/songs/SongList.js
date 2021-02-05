@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { SongContext } from './SongProvider';
 import { TuningContext } from '../tunings/TuningProvider';
 import { UserContext } from '../users/UserProvider';
-import { SetlistContext } from '../setlists/SetlistProvider';
 import { SongListItem } from './SongListItem';
 import { SongSearch } from './SongSearch';
 
@@ -21,7 +20,6 @@ export const SongList = () => {
   const { songs, getSongs, searchTerms } = useContext(SongContext);
   const { tunings, getTunings } = useContext(TuningContext);
   const { getUsers, activeLinkSet } = useContext(UserContext);
-  const { getSetlists } = useContext(SetlistContext);
 
   const [filteredSongs, setFiltered] = useState([]);
   const [sorted, setSorted] = useState([]);
