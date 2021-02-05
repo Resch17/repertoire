@@ -56,9 +56,10 @@ export const ApplicationViews = () => (
                             <Tuner />
                           </Route>
                         </ToneProvider>
+                        
                         <Route exact path="/setlist">
                           <Setlist />
-                        </Route>
+                        </Route>                        
                       </SetlistProvider>
                     </NoteProvider>
                   </SongProvider>

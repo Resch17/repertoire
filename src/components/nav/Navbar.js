@@ -1,23 +1,13 @@
-import React, { useEffect, useContext, useRef } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { UserContext } from '../users/UserProvider';
 
-export const Navbar = (props) => {
+export const Navbar = () => {
   const { users, getUsers } = useContext(UserContext);
-  const songsLink = useRef();
-  const tuneLink = useRef();
-  const setlistLink = useRef();
-
-  const activeLinkSet = () => {
-    if (window.location.href.search('song') > -1) {
-      songsLink.current.classList.add('navbar__item--active')
-    }
-  }
 
   useEffect(() => {
     getUsers();
-    activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const userId = parseInt(localStorage.getItem('rep_user'));
@@ -49,7 +39,7 @@ export const Navbar = (props) => {
         </div>
       </div>
       <div className="navbar__item">
-        <div className="navbar__item--songs" ref={songsLink}>
+        <div className="navbar__item--songs">
           <h2>
             <Link className="navbar__link" to="/">
               Songs
@@ -58,7 +48,7 @@ export const Navbar = (props) => {
         </div>
       </div>
       <div className="navbar__item">
-        <div className="navbar__item--tune" ref={tuneLink}>
+        <div className="navbar__item--tune">
           <h2>
             <Link className="navbar__link" to="/tune">
               Tune
@@ -67,7 +57,7 @@ export const Navbar = (props) => {
         </div>
       </div>
       <div className="navbar__item">
-        <div className="navbar__item--setlist" ref={setlistLink}>
+        <div className="navbar__item--setlist">
           <h2>
             <Link className="navbar__link" to="/setlist">
               Setlist

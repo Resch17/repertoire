@@ -3,10 +3,12 @@ import { useParams, useHistory } from 'react-router-dom';
 import { SongContext } from './SongProvider';
 import { TuningContext } from '../tunings/TuningProvider';
 import { UserContext } from '../users/UserProvider';
+import { SetlistContext } from '../setlists/SetlistProvider';
 import { SongListItem } from './SongListItem';
 import { SongSearch } from './SongSearch';
 
 export const SongList = () => {
+  // refs for column header arrows - used for sorting
   const artistTHasc = useRef();
   const artistTHdesc = useRef();
   const titleTHasc = useRef();
@@ -15,9 +17,11 @@ export const SongList = () => {
   const genreTHdesc = useRef();
   const instrumentTHasc = useRef();
   const instrumentTHdesc = useRef();
+
   const { songs, getSongs, searchTerms } = useContext(SongContext);
   const { tunings, getTunings } = useContext(TuningContext);
   const { getUsers, activeLinkSet } = useContext(UserContext);
+  const { getSetlists } = useContext(SetlistContext);
 
   const [filteredSongs, setFiltered] = useState([]);
   const [sorted, setSorted] = useState([]);
@@ -27,11 +31,14 @@ export const SongList = () => {
 
   const history = useHistory();
 
+  // useEffect to initialize data for tunings, songs, and users on component mounting
   useEffect(() => {
-    getTunings().then(getSongs).then(getUsers);
+    getTunings().then(getSongs).then(getUsers)
+    // .then(getSetlists);
     activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // useEffect to handle sorting the songs table when the sort type or filtered songs state changes
   useEffect(() => {
     const sortArray = (type) => {
       const types = {
@@ -45,6 +52,8 @@ export const SongList = () => {
         instrumentDesc: 'instrumentDesc',
       };
       const sortProperty = types[type];
+
+      // sort filteredSongs, which contains either search results or full list of songs if no search terms have been entered
       const sorted = [...filteredSongs].sort((a, b) => {
         if (sortProperty === 'artist') {
           return a.artist.name.localeCompare(b.artist.name);
@@ -71,6 +80,7 @@ export const SongList = () => {
     sortArray(sortType);
   }, [sortType, filteredSongs]);
 
+  // useEffect to handle search
   useEffect(() => {
     if (searchTerms !== '') {
       const subset = songs.filter((song) => {
@@ -85,6 +95,7 @@ export const SongList = () => {
     }
   }, [searchTerms, songs]);
 
+  // function to shrink SongList table when a song is chosen and SongDisplay is shown
   const tableStyle = () => {
     if (songId) {
       return {
@@ -96,6 +107,7 @@ export const SongList = () => {
     }
   };
 
+  // function to hide "select a song" message when a song is chosen and SongDisplay is shown
   const footerStyle = () => {
     if (songId) {
       return {
@@ -104,6 +116,7 @@ export const SongList = () => {
     }
   };
 
+  // random integer generator for random song button functionality
   const randomSong = () => {
     const getRandomInt = (min, max) => {
       min = Math.ceil(min);
@@ -116,6 +129,7 @@ export const SongList = () => {
     return randomInt + 1;
   };
 
+  // function to remove sort indicator arrows from all fields
   const clearSorts = () => {
     const sortRefs = [
       artistTHasc,
@@ -132,6 +146,7 @@ export const SongList = () => {
     });
   };
 
+  // function to show appropriate sort indicator arrow
   const unhideArrow = (ref) => {
     ref.current.classList.remove('isHidden');
   };

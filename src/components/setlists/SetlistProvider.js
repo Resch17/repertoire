@@ -1,10 +1,11 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { apiUrl } from '../utilities/Settings.js';
 
 export const SetlistContext = createContext();
 
 export const SetlistProvider = (props) => {
   const [setlists, setSetlists] = useState([]);
+  const [setlist, setSetlist] = useState([]);
   const userId = parseInt(localStorage.getItem('rep_user'));
 
   const getSetlists = () => {
@@ -48,18 +49,31 @@ export const SetlistProvider = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(setlistObj),
-    });
+    }).then(getSetlists);
   };
 
   const deleteSetlistItem = (setlistId) => {
     return fetch(`${apiUrl}/setlists/${setlistId}`, {
       method: 'DELETE',
-    }).then(getSetlists)
+    }).then(getSetlists);
   };
+
+  useEffect(() => {
+    getSetlists();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <SetlistContext.Provider
-      value={{ setlists, getSetlists, addSetlistItem, updateSetlistItem, deleteSetlistItem }}
+      value={{
+        setlists,
+        getSetlists,
+        addSetlistItem,
+        updateSetlistItem,
+        deleteSetlistItem,
+        setlist,
+        setSetlist,
+        setSetlists,
+      }}
     >
       {props.children}
     </SetlistContext.Provider>
