@@ -27,6 +27,7 @@ export const SongDisplay = () => {
     SetlistContext
   );
 
+  // on component mount and songId changing, initializes notes, instruments, the selected song, and sets component state for the song, the instrument, and the youtube video (by splitting the youtube URL)
   useEffect(() => {
     getNotes().then(() => {
       getInstruments().then((instruments) => {
@@ -40,9 +41,12 @@ export const SongDisplay = () => {
     });
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // function to handle deletion of a song, including downstream effects to notes and setlists
   const handleDelete = () => {
     getNotes()
       .then((notes) => {
+
+        // delete notes associated with this song id, for all users
         const thisSongNotes = notes.filter(
           (n) => n.songId === parseInt(songId)
         );
@@ -51,6 +55,7 @@ export const SongDisplay = () => {
         });
       })
       .then(() => {
+        // delete setlist items that include this song, update ordinals on any other setlist items that would be affected by this song's deletion
         getSetlists().then((setlists) => {
           const thisSongSetlistItems = setlists.filter(
             (sl) => sl.songId === parseInt(songId)
@@ -132,8 +137,6 @@ export const SongDisplay = () => {
         setOpen={setConfirmOpen}
         onConfirm={() => {
           handleDelete();
-
-          // history.push('/');
         }}
       >
         Are you sure you want to delete this song?

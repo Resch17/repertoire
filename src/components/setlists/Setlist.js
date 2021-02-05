@@ -10,33 +10,27 @@ import './Setlist.css';
 
 export const Setlist = () => {
   const userId = parseInt(localStorage.getItem('rep_user'));
-  const { activeLinkSet, getUsers, users } = useContext(UserContext);
-  const { getSetlists, updateSetlistItem, deleteSetlistItem } = useContext(
-    SetlistContext
-  );
+  const { activeLinkSet } = useContext(UserContext);
+  const {
+    getSetlists,
+    updateSetlistItem,
+    deleteSetlistItem,
+    setlist,
+    setSetlist,
+    setlists,
+  } = useContext(SetlistContext);
   const { getSongs, songs } = useContext(SongContext);
-  const [setlist, setSetlist] = useState([]);
-  const [thisUser, setThisUser] = useState({});
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [dragId, setDragId] = useState();
   const printRef = useRef();
   const history = useHistory();
 
   useEffect(() => {
     activeLinkSet();
-    getUsers()
-      .then((parsed) => {
-        setThisUser(parsed.find((u) => u.id === userId));
-      })
-      .then(getSongs)
-      .then(() => {
-        getSetlists().then((parsed) => {
-          setSetlist(parsed.filter((s) => s.userId === userId));
-          setThisUser(users.find((u) => u.id === userId));
-        });
-      });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const [dragId, setDragId] = useState();
+    getSongs().then(() => {
+      setSetlist(setlists.filter((s) => s.userId === userId));
+    });
+  }, [setlists]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDrag = (evt) => {
     setDragId(evt.currentTarget.id);
@@ -119,11 +113,8 @@ export const Setlist = () => {
             >
               Clear
             </div>
-            {thisUser ? (
-              <h1>{thisUser?.username}'s Setlist</h1>
-            ) : (
-              <h1>Your Setlist</h1>
-            )}
+
+            <h1>Your Setlist</h1>
             <ReactToPrint
               trigger={() => (
                 <div className="setlist-toprow__print">

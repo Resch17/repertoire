@@ -38,9 +38,7 @@ export const SongForm = () => {
     url: '',
     youtube: '',
   });
-
   const [isLoading, setIsLoading] = useState(true);
-
   const [filteredArtists, setFilteredArtists] = useState([]);
   const [selectedInstrument, setSelectedInstrument] = useState(null);
 

@@ -7,6 +7,8 @@ import './Tuner.css';
 export const Tuner = () => {
   const { getTunings } = useContext(TuningContext);
   const { activeLinkSet } = useContext(UserContext);
+
+  // ref for instrument selection switch
   const instrumentSelect = useRef();
 
   const [tunings, setTunings] = useState([]);
@@ -36,10 +38,12 @@ export const Tuner = () => {
     activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // function for setting instrument to the user's selection
   const instrumentSelection = () => {
     instrumentSelect.current.checked ? setInstrument(2) : setInstrument(1);
   };
 
+  // when selected instrument changes, change the default tuning based on that instrument (standard bass tuning vs standard guitar tuning)
   useEffect(() => {
     if (instrument === 2) {
       setSelectedTuning(tunings.find((t) => t.id === 3));

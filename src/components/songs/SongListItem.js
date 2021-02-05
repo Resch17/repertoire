@@ -7,14 +7,17 @@ import './Song.css';
 
 export const SongListItem = ({ song, tuning }) => {
   const history = useHistory();
+
   const { setSearchTerms } = useContext(SongContext);
-  const { addSetlistItem } = useContext(SetlistContext);
+  const { addSetlistItem } = useContext(SetlistContext);  
   const { users } = useContext(UserContext);
+
   const songUser = users.find((u) => u.id === song.userId);
   const userId = parseInt(localStorage.getItem('rep_user'));
 
   const { songId } = useParams();
 
+  // function for setting an additional class name to an item when it is selected on the table
   const selectedClass = (id) => {
     if (id === parseInt(songId)) {
       return 'song-list-item selected-item';
@@ -23,6 +26,7 @@ export const SongListItem = ({ song, tuning }) => {
     }
   };
 
+  // function for scrolling selected table row into view on the shrunken song list
   const scrollControl = () => {
     if (songId) {
       let row = document.querySelector('tr.selected-item');
@@ -30,6 +34,7 @@ export const SongListItem = ({ song, tuning }) => {
     }
   };
 
+  // handles adding a selected song to the user's setlist
   const addToSetlist = () => {
     addSetlistItem({
       userId,
@@ -37,6 +42,7 @@ export const SongListItem = ({ song, tuning }) => {
     });
   };
 
+  // invokes scroll control function when songId changes
   useEffect(() => {
     scrollControl();
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -45,6 +51,8 @@ export const SongListItem = ({ song, tuning }) => {
     <tr
       className={selectedClass(song.id)}
       id={song.id}
+      
+      // onclick purpose: takes user to song detail page when clicking a row (unless they have clicked the add to setlist button)    
       onClick={(evt) => {
         if (!evt.target.id.startsWith('addToSetlist')) {
           setSearchTerms('');
