@@ -8,8 +8,8 @@ import './Song.css';
 export const SongListItem = ({ song, tuning }) => {
   const history = useHistory();
 
-  const { setSearchTerms } = useContext(SongContext);
-  const { addSetlistItem } = useContext(SetlistContext);  
+  const { setSearchTerms, searchTerms } = useContext(SongContext);
+  const { addSetlistItem } = useContext(SetlistContext);
   const { users } = useContext(UserContext);
 
   const songUser = users.find((u) => u.id === song.userId);
@@ -44,15 +44,16 @@ export const SongListItem = ({ song, tuning }) => {
 
   // invokes scroll control function when songId changes
   useEffect(() => {
-    scrollControl();
+    if (searchTerms === '') {
+      scrollControl();
+    }
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <tr
       className={selectedClass(song.id)}
       id={song.id}
-      
-      // onclick purpose: takes user to song detail page when clicking a row (unless they have clicked the add to setlist button)    
+      // onclick purpose: takes user to song detail page when clicking a row (unless they have clicked the add to setlist button)
       onClick={(evt) => {
         if (!evt.target.id.startsWith('addToSetlist')) {
           setSearchTerms('');
