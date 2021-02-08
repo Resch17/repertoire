@@ -6,6 +6,14 @@ export const ColorContext = createContext();
 export const ColorProvider = (props) => {
   const [colors, setColors] = useState([]);
   const [themes, setThemes] = useState([]);
+  const [selectedTheme, setSelectedTheme] = useState({
+    id: 1,
+    name: 'Default (Dark)',
+    backgroundColorId: 1,
+    accentTextColorId: 2,
+    primaryTextColorId: 3,
+    secondaryBackgroundColorId: 4,
+  });
 
   const getColors = () => {
     return fetch(`${apiUrl}/colors`)
@@ -26,7 +34,16 @@ export const ColorProvider = (props) => {
   };
 
   return (
-    <ColorContext.Provider value={{ colors, getColors, themes, getThemes }}>
+    <ColorContext.Provider
+      value={{
+        colors,
+        getColors,
+        themes,
+        getThemes,
+        selectedTheme,
+        setSelectedTheme,
+      }}
+    >
       {props.children}
     </ColorContext.Provider>
   );

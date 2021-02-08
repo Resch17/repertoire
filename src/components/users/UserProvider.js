@@ -5,6 +5,7 @@ export const UserContext = createContext();
 
 export const UserProvider = (props) => {
   const [users, setUsers] = useState([]);
+  const [thisUser, setThisUser] = useState({});
 
   const activeLinkSet = () => {
     const songsLink = document.querySelector('.navbar__item--songs');
@@ -36,8 +37,27 @@ export const UserProvider = (props) => {
       });
   };
 
+  const updateUser = (userObj) => {
+    return fetch(`http://localhost:8088/users/${userObj.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userObj),
+    }).then(getUsers);
+  };
+
   return (
-    <UserContext.Provider value={{ users, getUsers, activeLinkSet }}>
+    <UserContext.Provider
+      value={{
+        users,
+        getUsers,
+        activeLinkSet,
+        thisUser,
+        setThisUser,
+        updateUser,
+      }}
+    >
       {props.children}
     </UserContext.Provider>
   );

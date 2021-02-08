@@ -24,6 +24,7 @@
   font-family: var(--body-font);
   padding-left: 1em;
   background-color: var(--primary-text-color);
+  color: var(--background-color);
 }
 
 .randomize-button {
