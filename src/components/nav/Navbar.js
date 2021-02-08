@@ -1,21 +1,88 @@
 import React, { useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Navbar.css';
 import { UserContext } from '../users/UserProvider';
+import { ColorContext } from '../themes/ColorProvider';
+import { ThemeSelect } from './ThemeSelect';
 
 export const Navbar = () => {
-  const { users, getUsers } = useContext(UserContext);
+  const history = useHistory();
+  const { users, getUsers, thisUser, setThisUser } = useContext(UserContext);
+  const {
+    themes,
+    getColors,
+    colors,
+    getThemes,
+    selectedTheme,
+    setSelectedTheme,
+  } = useContext(ColorContext);
 
-  useEffect(() => {
-    getUsers();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const defaultTheme = {
+    id: 1,
+    name: 'Default (Dark)',
+    backgroundColorId: 1,
+    accentTextColorId: 2,
+    primaryTextColorId: 3,
+    secondaryBackgroundColorId: 4,
+  };
 
   const userId = parseInt(localStorage.getItem('rep_user'));
 
-  const thisUser = users.find((u) => u.id === userId);
+  useEffect(() => {
+    getThemes()
+      .then(getColors)
+      .then(getUsers)
+      .then((returned) => {
+        setThisUser(returned.find((u) => u.id === userId));
+      });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (users.length > 0) {
+      setSelectedTheme(themes.find((t) => t.id === thisUser.themeId));
+    }
+  }, [thisUser]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (selectedTheme && colors.length > 0) {
+      const bgColor = colors.find(
+        (c) => c.id === selectedTheme.backgroundColorId
+      );
+      const secBgColor = colors.find(
+        (c) => c.id === selectedTheme.secondaryBackgroundColorId
+      );
+      const accentColor = colors.find(
+        (c) => c.id === selectedTheme.accentTextColorId
+      );
+      const primaryTextColor = colors.find(
+        (c) => c.id === selectedTheme.primaryTextColorId
+      );
+
+      document.documentElement.style.setProperty(
+        '--background-color',
+        bgColor.hex
+      );
+      document.documentElement.style.setProperty(
+        '--secondary-background-color',
+        secBgColor.hex
+      );
+      document.documentElement.style.setProperty(
+        '--accent-text-color',
+        accentColor.hex
+      );
+      document.documentElement.style.setProperty(
+        '--primary-text-color',
+        primaryTextColor.hex
+      );
+    }
+  }, [selectedTheme, colors]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const logout = () => {
-    localStorage.clear();
+    setSelectedTheme(defaultTheme);
+    setTimeout(() => {
+      localStorage.clear();
+      history.push('/');
+    }, 100);
   };
 
   return (
@@ -71,6 +138,9 @@ export const Navbar = () => {
             <span>User:</span> {thisUser?.username}
           </h4>
         </div>
+      </div>
+      <div className="navbar__item">
+        <ThemeSelect />
       </div>
       <div className="navbar__item">
         <div className="navbar__item--logout">

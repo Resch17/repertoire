@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   width: 97%;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   border-bottom: 5px solid var(--secondary-background-color);
   height: 70px;
@@ -56,4 +56,20 @@
 
 .navbar__item--active {
   border-bottom: 5px solid var(--accent-text-color);
+}
+
+.theme-select__group label {
+  color: var(--accent-text-color);
+  font-family: var(--heading-font);
+  margin-right: 2px;
+}
+
+.theme-select {
+  margin-top: 11px;
+  background-color: var(--primary-text-color);
+  color: var(--background-color);
+  border: none;
+  outline: none;
+  font-family: var(--body-font);
+  border-radius: 5px;
 }

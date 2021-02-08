@@ -29,6 +29,7 @@ export const Register = (props) => {
           body: JSON.stringify({
             email: email.current.value,
             username: username.current.value,
+            themeId: 1
           }),
         })
           .then((res) => res.json())

@@ -4,6 +4,7 @@ import { ApplicationViews } from './AppViews';
 import { Navbar } from './nav/Navbar';
 import { Auth } from './auth/Auth';
 import { UserProvider } from './users/UserProvider';
+import { ColorProvider } from './themes/ColorProvider';
 import './Repertoire.css';
 
 export const Repertoire = () => (
@@ -13,9 +14,11 @@ export const Repertoire = () => (
         if (localStorage.getItem('rep_user')) {
           return (
             <>
-              <UserProvider>
-                <Navbar />
-              </UserProvider>
+              <ColorProvider>
+                <UserProvider>
+                  <Navbar />
+                </UserProvider>
+              </ColorProvider>
               <ApplicationViews />
             </>
           );
