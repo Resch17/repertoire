@@ -10,7 +10,7 @@ import './Setlist.css';
 
 export const Setlist = () => {
   const userId = parseInt(localStorage.getItem('rep_user'));
-  const { activeLinkSet } = useContext(UserContext);
+  const { activeLinkSet, getUsers, users } = useContext(UserContext);
   const {
     getSetlists,
     updateSetlistItem,
@@ -27,9 +27,11 @@ export const Setlist = () => {
 
   useEffect(() => {
     activeLinkSet();
-    getSongs().then(() => {
-      setSetlist(setlists.filter((s) => s.userId === userId));
-    });
+    getUsers()
+      .then(getSongs)
+      .then(() => {
+        setSetlist(setlists.filter((s) => s.userId === userId));
+      });
   }, [setlists]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDrag = (evt) => {
@@ -100,6 +102,15 @@ export const Setlist = () => {
     setSetlist([]);
   };
 
+  const setlistTitle = () => {
+    if (users) {
+      const currentUser = users.find((u) => u.id === userId);
+      return <h1>{currentUser.username}'s Setlist</h1>;
+    } else {
+      return <h1>Your Setlist</h1>;
+    }
+  };
+
   if (setlist.length > 0) {
     return (
       <>
@@ -114,7 +125,7 @@ export const Setlist = () => {
               Clear
             </div>
 
-            <h1>Your Setlist</h1>
+            {setlistTitle()}
             <ReactToPrint
               trigger={() => (
                 <div className="setlist-toprow__print">
