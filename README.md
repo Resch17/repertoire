@@ -22,6 +22,12 @@ This will install the libraries and other dependencies used by ***Repertoire***.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Running the Database
+You must run JSON server in another instance of your terminal so you will have access to the data that ***Repertoire*** is capturing. Navigate to the api directory and run the following command:
+> `json-server -p 8088 repertoire.json`
+
+This will run the provided sample database on port 8088. Please note that since this test database is inside the development folder, changes to the database may cause the app to refresh. To avoid this, copy `api/repertoire.json` to a folder outside the ***Repertoire*** directory and run the above command from there.
+
 ## Running the App
 In the project directory, you can run:
 > `npm start`
@@ -32,11 +38,7 @@ Open http://localhost:3000 to view ***Repertoire*** in your browser.
 The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-## Running the Database
-You must run JSON server in another instance of your terminal so you will have access to the data that ***Repertoire*** is capturing. Navigate to the api directory and run the following command:
-> `json-server -p 8088 repertoire.json`
-
-This will run the provided sample database on port 8088. Please note that since this test database is inside the development folder, changes to the database may cause the app to refresh. To avoid this, copy `api/repertoire.json` to a folder outside the ***Repertoire*** directory and run the above command from there.
+Log in to the app using the email `demo@demo` to start using ***Repertoire***.
 
 ## Learn More
 You can learn more in the [Create React App](https://github.com/facebook/create-react-app) documentation.
