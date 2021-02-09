@@ -8,7 +8,7 @@ import './Song.css';
 export const SongListItem = ({ song, tuning }) => {
   const history = useHistory();
 
-  const { setSearchTerms, searchTerms } = useContext(SongContext);
+  const { songs, setSearchTerms, searchTerms } = useContext(SongContext);
   const { addSetlistItem } = useContext(SetlistContext);
   const { users } = useContext(UserContext);
 
@@ -44,8 +44,10 @@ export const SongListItem = ({ song, tuning }) => {
 
   // invokes scroll control function when songId changes
   useEffect(() => {
-    if (searchTerms === '') {
+    if (searchTerms === '' && songs.find((s) => s.id === parseInt(songId))) {
       scrollControl();
+    } else {
+      history.push('/');
     }
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
 
