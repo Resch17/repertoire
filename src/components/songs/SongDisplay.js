@@ -32,10 +32,14 @@ export const SongDisplay = () => {
     getNotes().then(() => {
       getInstruments().then((instruments) => {
         getSongById(songId).then((song) => {
-          setSong(song);
-          setInstrument(instruments.find((i) => i.id === song.instrumentId));
-          const [unused, yt] = song.youtube.split('v='); // eslint-disable-line no-unused-vars
-          setYoutubeId(yt);
+          if (song.id) {
+            setSong(song);
+            setInstrument(instruments.find((i) => i.id === song.instrumentId));
+            const [unused, yt] = song.youtube.split('v='); // eslint-disable-line no-unused-vars
+            setYoutubeId(yt);
+          } else {
+            history.push('/');
+          }
         });
       });
     });
@@ -45,7 +49,6 @@ export const SongDisplay = () => {
   const handleDelete = () => {
     getNotes()
       .then((notes) => {
-
         // delete notes associated with this song id, for all users
         const thisSongNotes = notes.filter(
           (n) => n.songId === parseInt(songId)

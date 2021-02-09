@@ -31,7 +31,14 @@ export const SongList = () => {
 
   // useEffect to initialize data for tunings, songs, and users on component mounting
   useEffect(() => {
-    getTunings().then(getSongs).then(getUsers)
+    getTunings()
+      .then(getSongs)
+      .then(getUsers)
+      .then(() => {
+        if (!songs.find((s) => s.id === parseInt(songId))) {
+          history.push('/');
+        }
+      });
     // .then(getSetlists);
     activeLinkSet();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -156,7 +163,8 @@ export const SongList = () => {
         <div
           className="randomize-button"
           onClick={() => {
-            history.push(`/songs/detail/${randomSong()}`);
+            const random = songs[randomSong()];
+            history.push(`/songs/detail/${random.id}`);
           }}
         >
           <p>Random Song!</p>
