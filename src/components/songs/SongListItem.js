@@ -44,10 +44,12 @@ export const SongListItem = ({ song, tuning }) => {
 
   // invokes scroll control function when songId changes
   useEffect(() => {
-    if (searchTerms === '' && songs.find((s) => s.id === parseInt(songId))) {
-      scrollControl();
-    } else {
-      history.push('/');
+    if (songId) {
+      if (searchTerms === '' && songs.find((s) => s.id === parseInt(songId))) {
+        scrollControl();
+      } else {
+        history.push('/');
+      }
     }
   }, [songId]); // eslint-disable-line react-hooks/exhaustive-deps
 
