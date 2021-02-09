@@ -1,0 +1,868 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Resch17",
+      "email": "aaronmresch@gmail.com",
+      "themeId": 1
+    },
+    {
+      "email": "test@test",
+      "username": "Test",
+      "id": 2,
+      "themeId": 2
+    },
+    {
+      "email": "demo@demo",
+      "username": "Demo",
+      "id": 3,
+      "themeId": 1
+    }
+  ],
+  "songs": [
+    {
+      "id": 1,
+      "title": "Sultans of Swing",
+      "artistId": 1,
+      "genreId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "tuningId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/dire-straits/sultans-of-swing-tabs-44423",
+      "youtube": "https://www.youtube.com/watch?v=a0uv6yhtcSI"
+    },
+    {
+      "id": 2,
+      "title": "Lost",
+      "artistId": 2,
+      "genreId": 7,
+      "instrumentId": 1,
+      "userId": 1,
+      "tuningId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/frank-ocean/lost-tabs-1802846",
+      "youtube": "https://www.youtube.com/watch?v=J3DWAJGaf7o"
+    },
+    {
+      "id": 3,
+      "title": "Magazines",
+      "artistId": 3,
+      "genreId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "tuningId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/the-hold-steady/magazines-chords-800158",
+      "youtube": "https://www.youtube.com/watch?v=SEcL2qbXswE"
+    },
+    {
+      "title": "Roscoe",
+      "artistId": 4,
+      "genreId": 8,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/midlake/roscoe-chords-1692387",
+      "youtube": "https://www.youtube.com/watch?v=Jkqn0d2sAsw",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "title": "Ain't Talkin' 'Bout Love",
+      "artistId": 5,
+      "genreId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "tuningId": 2,
+      "url": "https://tabs.ultimate-guitar.com/tab/van-halen/aint-talkin-bout-love-tabs-23613",
+      "youtube": "https://www.youtube.com/watch?v=Y-IUB62zDlA"
+    },
+    {
+      "id": 6,
+      "title": "Blue Eyes Crying In The Rain",
+      "artistId": 6,
+      "genreId": 6,
+      "instrumentId": 1,
+      "userId": 1,
+      "tuningId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/willie-nelson/blue-eyes-crying-in-the-rain-tabs-88277",
+      "youtube": "https://www.youtube.com/watch?v=crgtWomWg90"
+    },
+    {
+      "id": 7,
+      "title": "Pinball Wizard",
+      "artistId": 7,
+      "genreId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "tuningId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/the-who/pinball-wizard-tabs-41292",
+      "youtube": "https://www.youtube.com/watch?v=4AKbUm8GrbM"
+    },
+    {
+      "id": 8,
+      "title": "Maps",
+      "artistId": 8,
+      "genreId": 8,
+      "instrumentId": 1,
+      "userId": 1,
+      "tuningId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/yeah-yeah-yeahs/maps-tabs-152730",
+      "youtube": "https://www.youtube.com/watch?v=UKRo86ccTtY"
+    },
+    {
+      "title": "Bananas and Blow",
+      "artistId": 9,
+      "genreId": 1,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/ween/bananas-and-blow-chords-926377",
+      "youtube": "https://www.youtube.com/watch?v=6Gd87JmkAkE",
+      "id": 10
+    },
+    {
+      "title": "Time After Time",
+      "artistId": 11,
+      "genreId": 4,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/cyndi-lauper/time-after-time-chords-1054329",
+      "youtube": "https://www.youtube.com/watch?v=3KdBCFclSC0",
+      "id": 11
+    },
+    {
+      "title": "Jungle Love",
+      "artistId": 12,
+      "genreId": 1,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/steve-miller-band/jungle-love-chords-1480925",
+      "youtube": "https://www.youtube.com/watch?v=y6DhLuwsI6M",
+      "id": 12
+    },
+    {
+      "title": "Green River",
+      "artistId": 13,
+      "genreId": 1,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/creedence-clearwater-revival/green-river-tabs-64061",
+      "youtube": "https://www.youtube.com/watch?v=w0VI1zByJ3s",
+      "id": 13
+    },
+    {
+      "title": "Papa's Got a Brand New Bag",
+      "artistId": 14,
+      "genreId": 7,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/james-brown/papas-got-a-brand-new-bag-chords-16964",
+      "youtube": "https://www.youtube.com/watch?v=QE5D2hJhacU",
+      "id": 14
+    },
+    {
+      "title": "Fly Me to the Moon",
+      "artistId": 15,
+      "genreId": 4,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/frank-sinatra/fly-me-to-the-moon-chords-335196",
+      "youtube": "https://www.youtube.com/watch?v=ZEcqHA7dbwM",
+      "id": 15
+    },
+    {
+      "title": "Go Your Own Way",
+      "artistId": 18,
+      "genreId": 1,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/fleetwood-mac/go-your-own-way-tabs-13587",
+      "youtube": "https://www.youtube.com/watch?v=6ul-cZyuYq4",
+      "id": 16
+    },
+    {
+      "title": "Nights In White Satin",
+      "artistId": 19,
+      "genreId": 1,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 2,
+      "url": "https://tabs.ultimate-guitar.com/tab/the-moody-blues/nights-in-white-satin-chords-56845",
+      "youtube": "https://www.youtube.com/watch?v=iVusUjyby18",
+      "id": 17
+    },
+    {
+      "title": "And Your Bird Can Sing",
+      "artistId": 10,
+      "genreId": 1,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 2,
+      "url": "https://tabs.ultimate-guitar.com/tab/the-beatles/and-your-bird-can-sing-tabs-973296",
+      "youtube": "https://www.youtube.com/watch?v=Uq0aeEYLkIE",
+      "id": 18
+    },
+    {
+      "title": "Don't Start Now",
+      "artistId": 21,
+      "genreId": 4,
+      "tuningId": 3,
+      "instrumentId": 2,
+      "userId": 2,
+      "url": "https://tabs.ultimate-guitar.com/tab/dua-lipa/dont-start-now-bass-2878760",
+      "youtube": "https://www.youtube.com/watch?v=8CLkVWB_Lj8",
+      "id": 19
+    },
+    {
+      "title": "Waterloo",
+      "artistId": 22,
+      "genreId": 4,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/abba/waterloo-chords-1055559",
+      "youtube": "https://www.youtube.com/watch?v=k4LgdIvwF38",
+      "id": 20
+    },
+    {
+      "title": "Paradise City",
+      "artistId": 23,
+      "genreId": 1,
+      "tuningId": 2,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/guns-n-roses/paradise-city-tabs-102464",
+      "youtube": "https://www.youtube.com/watch?v=Rbm6GXllBiw",
+      "id": 21
+    },
+    {
+      "title": "Achy Breaky Heart",
+      "artistId": 24,
+      "genreId": 6,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 1,
+      "url": "https://tabs.ultimate-guitar.com/tab/billy-ray-cyrus/achy-breaky-heart-chords-65435",
+      "youtube": "https://www.youtube.com/watch?v=byQIPdHMpjc",
+      "id": 22
+    }
+  ],
+  "artists": [
+    {
+      "id": 1,
+      "name": "Dire Straits"
+    },
+    {
+      "id": 2,
+      "name": "Frank Ocean"
+    },
+    {
+      "id": 3,
+      "name": "The Hold Steady"
+    },
+    {
+      "id": 4,
+      "name": "Midlake"
+    },
+    {
+      "id": 5,
+      "name": "Van Halen"
+    },
+    {
+      "id": 6,
+      "name": "Willie Nelson"
+    },
+    {
+      "id": 7,
+      "name": "The Who"
+    },
+    {
+      "id": 8,
+      "name": "Yeah Yeah Yeahs"
+    },
+    {
+      "name": "Ween",
+      "id": 9
+    },
+    {
+      "name": "The Beatles",
+      "id": 10
+    },
+    {
+      "name": "Cyndi Lauper",
+      "id": 11
+    },
+    {
+      "name": "Steve Miller Band",
+      "id": 12
+    },
+    {
+      "name": "Creedence Clearwater Revival",
+      "id": 13
+    },
+    {
+      "name": "James Brown",
+      "id": 14
+    },
+    {
+      "name": "Frank Sinatra",
+      "id": 15
+    },
+    {
+      "name": "The Clash",
+      "id": 16
+    },
+    {
+      "name": "Wu-Tang Clan",
+      "id": 17
+    },
+    {
+      "name": "Fleetwood Mac",
+      "id": 18
+    },
+    {
+      "name": "The Moody Blues",
+      "id": 19
+    },
+    {
+      "name": "Fleet Foxes",
+      "id": 20
+    },
+    {
+      "name": "Dua Lipa",
+      "id": 21
+    },
+    {
+      "name": "ABBA",
+      "id": 22
+    },
+    {
+      "name": "Guns N' Roses",
+      "id": 23
+    },
+    {
+      "name": "Billy Ray Cyrus",
+      "id": 24
+    }
+  ],
+  "genres": [
+    {
+      "id": 1,
+      "name": "Rock"
+    },
+    {
+      "id": 2,
+      "name": "Metal"
+    },
+    {
+      "id": 3,
+      "name": "Folk"
+    },
+    {
+      "id": 4,
+      "name": "Pop"
+    },
+    {
+      "id": 5,
+      "name": "Soundtrack"
+    },
+    {
+      "id": 6,
+      "name": "Country"
+    },
+    {
+      "id": 7,
+      "name": "R&B, Funk, Soul"
+    },
+    {
+      "id": 8,
+      "name": "Indie"
+    },
+    {
+      "id": 9,
+      "name": "Jazz & Blues"
+    },
+    {
+      "id": 10,
+      "name": "Other"
+    }
+  ],
+  "instruments": [
+    {
+      "id": 1,
+      "name": "Guitar"
+    },
+    {
+      "id": 2,
+      "name": "Bass"
+    }
+  ],
+  "tunings": [
+    {
+      "id": 1,
+      "name": "Standard",
+      "instrumentId": 1,
+      "string1toneId": 1,
+      "string2toneId": 2,
+      "string3toneId": 3,
+      "string4toneId": 4,
+      "string5toneId": 5,
+      "string6toneId": 6
+    },
+    {
+      "id": 2,
+      "name": "1/2 Step Down",
+      "instrumentId": 1,
+      "string1toneId": 7,
+      "string2toneId": 8,
+      "string3toneId": 9,
+      "string4toneId": 10,
+      "string5toneId": 11,
+      "string6toneId": 12
+    },
+    {
+      "id": 3,
+      "name": "Standard",
+      "instrumentId": 2,
+      "string1toneId": 13,
+      "string2toneId": 14,
+      "string3toneId": 15,
+      "string4toneId": 16,
+      "string5toneId": null,
+      "string6toneId": null
+    },
+    {
+      "id": 4,
+      "name": "Drop D",
+      "instrumentId": 2,
+      "string1toneId": 17,
+      "string2toneId": 14,
+      "string3toneId": 15,
+      "string4toneId": 16,
+      "string5toneId": null,
+      "string6toneId": null
+    },
+    {
+      "id": 5,
+      "name": "1/2 Step Down",
+      "instrumentId": 2,
+      "string1toneId": 18,
+      "string2toneId": 19,
+      "string3toneId": 20,
+      "string4toneId": 21,
+      "string5toneId": null,
+      "string6toneId": null
+    },
+    {
+      "id": 6,
+      "name": "Full Step Down",
+      "instrumentId": 2,
+      "string1toneId": 22,
+      "string2toneId": 23,
+      "string3toneId": 24,
+      "string4toneId": 25,
+      "string5toneId": null,
+      "string6toneId": null
+    },
+    {
+      "id": 7,
+      "name": "Drop D",
+      "instrumentId": 1,
+      "string1toneId": 26,
+      "string2toneId": 2,
+      "string3toneId": 3,
+      "string4toneId": 4,
+      "string5toneId": 5,
+      "string6toneId": 6
+    },
+    {
+      "id": 8,
+      "name": "Full Step Down",
+      "instrumentId": 1,
+      "string1toneId": 26,
+      "string2toneId": 27,
+      "string3toneId": 28,
+      "string4toneId": 29,
+      "string5toneId": 30,
+      "string6toneId": 31
+    },
+    {
+      "id": 9,
+      "name": "Open D",
+      "instrumentId": 1,
+      "string1toneId": 26,
+      "string2toneId": 2,
+      "string3toneId": 3,
+      "string4toneId": 10,
+      "string5toneId": 30,
+      "string6toneId": 31
+    },
+    {
+      "id": 10,
+      "name": "Open G",
+      "instrumentId": 1,
+      "string1toneId": 26,
+      "string2toneId": 27,
+      "string3toneId": 3,
+      "string4toneId": 4,
+      "string5toneId": 5,
+      "string6toneId": 31
+    },
+    {
+      "id": 11,
+      "name": "DADGAD",
+      "instrumentId": 1,
+      "string1toneId": 26,
+      "string2toneId": 2,
+      "string3toneId": 3,
+      "string4toneId": 4,
+      "string5toneId": 30,
+      "string6toneId": 31
+    },
+    {
+      "id": 12,
+      "name": "Open E",
+      "instrumentId": 1,
+      "string1toneId": 1,
+      "string2toneId": 32,
+      "string3toneId": 33,
+      "string4toneId": 34,
+      "string5toneId": 5,
+      "string6toneId": 6
+    }
+  ],
+  "tones": [
+    {
+      "id": 1,
+      "note": "E",
+      "path": "/tones/gtr-std-e1.mp3"
+    },
+    {
+      "id": 2,
+      "note": "A",
+      "path": "/tones/gtr-std-a1.mp3"
+    },
+    {
+      "id": 3,
+      "note": "D",
+      "path": "/tones/gtr-std-d1.mp3"
+    },
+    {
+      "id": 4,
+      "note": "G",
+      "path": "/tones/gtr-std-g1.mp3"
+    },
+    {
+      "id": 5,
+      "note": "B",
+      "path": "/tones/gtr-std-b1.mp3"
+    },
+    {
+      "id": 6,
+      "note": "E",
+      "path": "/tones/gtr-std-e2.mp3"
+    },
+    {
+      "id": 7,
+      "note": "Eb",
+      "path": "/tones/gtr-hsd-eb1.mp3"
+    },
+    {
+      "id": 8,
+      "note": "Ab",
+      "path": "/tones/gtr-hsd-ab1.mp3"
+    },
+    {
+      "id": 9,
+      "note": "Db",
+      "path": "/tones/gtr-hsd-db1.mp3"
+    },
+    {
+      "id": 10,
+      "note": "Gb",
+      "path": "/tones/gtr-hsd-gb1.mp3"
+    },
+    {
+      "id": 11,
+      "note": "Bb",
+      "path": "/tones/gtr-hsd-bb1.mp3"
+    },
+    {
+      "id": 12,
+      "note": "Eb",
+      "path": "/tones/gtr-hsd-eb2.mp3"
+    },
+    {
+      "id": 13,
+      "note": "E",
+      "path": "/tones/bass-std-e.mp3"
+    },
+    {
+      "id": 14,
+      "note": "A",
+      "path": "/tones/bass-std-a.mp3"
+    },
+    {
+      "id": 15,
+      "note": "D",
+      "path": "/tones/bass-std-d.mp3"
+    },
+    {
+      "id": 16,
+      "note": "G",
+      "path": "/tones/bass-std-g.mp3"
+    },
+    {
+      "id": 17,
+      "note": "D",
+      "path": "/tones/bass-drop-d.mp3"
+    },
+    {
+      "id": 18,
+      "note": "Eb",
+      "path": "/tones/bass-hsd-eb.mp3"
+    },
+    {
+      "id": 19,
+      "note": "Ab",
+      "path": "/tones/bass-hsd-ab.mp3"
+    },
+    {
+      "id": 20,
+      "note": "Db",
+      "path": "/tones/bass-hsd-db.mp3"
+    },
+    {
+      "id": 21,
+      "note": "Gb",
+      "path": "/tones/bass-hsd-gb.mp3"
+    },
+    {
+      "id": 22,
+      "note": "D",
+      "path": "/tones/bass-drop-d.mp3"
+    },
+    {
+      "id": 23,
+      "note": "G",
+      "path": "/tones/bass-fsd-g.mp3"
+    },
+    {
+      "id": 24,
+      "note": "C",
+      "path": "/tones/bass-fsd-c.mp3"
+    },
+    {
+      "id": 25,
+      "note": "F",
+      "path": "/tones/bass-fsd-f.mp3"
+    },
+    {
+      "id": 26,
+      "note": "D",
+      "path": "/tones/gtr-drop-d.mp3"
+    },
+    {
+      "id": 27,
+      "note": "G",
+      "path": "/tones/gtr-fsd-g.mp3"
+    },
+    {
+      "id": 28,
+      "note": "C",
+      "path": "/tones/gtr-fsd-c.mp3"
+    },
+    {
+      "id": 29,
+      "note": "F",
+      "path": "/tones/gtr-fsd-f.mp3"
+    },
+    {
+      "id": 30,
+      "note": "A",
+      "path": "/tones/gtr-fsd-a.mp3"
+    },
+    {
+      "id": 31,
+      "note": "D",
+      "path": "/tones/gtr-fsd-d2.mp3"
+    },
+    {
+      "id": 32,
+      "note": "B",
+      "path": "/tones/gtr-opene-b.mp3"
+    },
+    {
+      "id": 33,
+      "note": "E",
+      "path": "/tones/gtr-opene-e2.mp3"
+    },
+    {
+      "id": 34,
+      "note": "Ab",
+      "path": "/tones/gtr-opene-ab.mp3"
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "userId": 1,
+      "songId": 1,
+      "text": "Key of Dm"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "songId": 1,
+      "text": "4/4 time, 148 beats per minute"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "songId": 1,
+      "text": "Don't use a pick, it's Mark Knopfler."
+    },
+    {
+      "userId": 1,
+      "songId": 6,
+      "text": "Play it with feeling",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "songId": 5,
+      "text": "Tons of gain or it will never sound good.",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "songId": 2,
+      "text": "Make sure all of your silk shirts are both buttercream AND Versace.",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "text": "Boys on board and boys on deck",
+      "songId": 3,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "text": "He sure plays a mean pinball...",
+      "songId": 7,
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "text": "Also, get really high.",
+      "songId": 6,
+      "id": 11
+    },
+    {
+      "userId": 2,
+      "text": "What's \"creole\"?",
+      "songId": 1,
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "text": "Stonecutters made them from stone.",
+      "songId": 4,
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "text": "2nd guitar - Capo VIII",
+      "songId": 16,
+      "id": 15
+    },
+    {
+      "userId": 2,
+      "text": "This tab is for two guitars.",
+      "songId": 18,
+      "id": 16
+    }
+  ],
+  "setlists": [],
+  "themes": [
+    {
+      "id": 1,
+      "name": "Default (Dark)",
+      "backgroundColorId": 1,
+      "accentTextColorId": 2,
+      "primaryTextColorId": 3,
+      "secondaryBackgroundColorId": 4
+    },
+    {
+      "id": 2,
+      "name": "Vintage Warm",
+      "backgroundColorId": 5,
+      "accentTextColorId": 6,
+      "primaryTextColorId": 7,
+      "secondaryBackgroundColorId": 8
+    },
+    {
+      "id": 3,
+      "name": "Light Peach",
+      "backgroundColorId": 9,
+      "accentTextColorId": 10,
+      "primaryTextColorId": 11,
+      "secondaryBackgroundColorId": 12
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "hex": "#283149"
+    },
+    {
+      "id": 2,
+      "hex": "#F73859"
+    },
+    {
+      "id": 3,
+      "hex": "#DBEDF3"
+    },
+    {
+      "id": 4,
+      "hex": "#404B69"
+    },
+    {
+      "id": 5,
+      "hex": "#2c061f"
+    },
+    {
+      "id": 6,
+      "hex": "#d89216"
+    },
+    {
+      "id": 7,
+      "hex": "#e1d89f"
+    },
+    {
+      "id": 8,
+      "hex": "#374045"
+    },
+    {
+      "id": 9,
+      "hex": "#f6e1e1"
+    },
+    {
+      "id": 10,
+      "hex": "#eb4d55"
+    },
+    {
+      "id": 11,
+      "hex": "#333366"
+    },
+    {
+      "id": 12,
+      "hex": "#ff9d76"
+    }
+  ]
+}
