@@ -35,8 +35,10 @@ export const SongList = () => {
       .then(getSongs)
       .then(getUsers)
       .then(() => {
-        if (!songs.find((s) => s.id === parseInt(songId))) {
-          history.push('/');
+        if (songId) {
+          if (!songs.find((s) => s.id === parseInt(songId))) {
+            history.push('/');
+          }
         }
       });
     // .then(getSetlists);
