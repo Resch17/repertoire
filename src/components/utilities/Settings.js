@@ -1,1 +1,1 @@
-export const apiUrl = 'https://tabrepertoire-api.herokuapp.com'
+export const apiUrl = 'https://localhost:8088'
