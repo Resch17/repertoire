@@ -250,6 +250,17 @@
       "url": "https://tabs.ultimate-guitar.com/tab/billy-ray-cyrus/achy-breaky-heart-chords-65435",
       "youtube": "https://www.youtube.com/watch?v=byQIPdHMpjc",
       "id": 22
+    },
+    {
+      "title": "Kyoto",
+      "artistId": 25,
+      "genreId": 8,
+      "tuningId": 1,
+      "instrumentId": 1,
+      "userId": 3,
+      "url": "https://tabs.ultimate-guitar.com/tab/phoebe-bridgers/kyoto-chords-3078854",
+      "youtube": "https://www.youtube.com/watch?v=Z61I9wW_t3w",
+      "id": 23
     }
   ],
   "artists": [
@@ -348,6 +359,10 @@
     {
       "name": "Billy Ray Cyrus",
       "id": 24
+    },
+    {
+      "name": "Phoebe Bridgers",
+      "id": 25
     }
   ],
   "genres": [
@@ -786,9 +801,52 @@
       "text": "This tab is for two guitars.",
       "songId": 18,
       "id": 16
+    },
+    {
+      "userId": 2,
+      "text": "Test note",
+      "songId": 11,
+      "id": 17
     }
   ],
-  "setlists": [],
+  "setlists": [
+    {
+      "userId": 2,
+      "songId": 22,
+      "ordinal": 3,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "songId": 19,
+      "ordinal": 1,
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "songId": 7,
+      "ordinal": 2,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "songId": 11,
+      "ordinal": 2,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "songId": 16,
+      "ordinal": 3,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "songId": 17,
+      "ordinal": 1,
+      "id": 6
+    }
+  ],
   "themes": [
     {
       "id": 1,
@@ -800,19 +858,43 @@
     },
     {
       "id": 2,
-      "name": "Vintage Warm",
+      "name": "Vintage (Dark)",
       "backgroundColorId": 5,
       "accentTextColorId": 6,
       "primaryTextColorId": 7,
       "secondaryBackgroundColorId": 8
     },
     {
-      "id": 3,
-      "name": "Light Peach",
+      "id": 4,
+      "name": "Peach (Light)",
       "backgroundColorId": 9,
       "accentTextColorId": 10,
       "primaryTextColorId": 11,
       "secondaryBackgroundColorId": 12
+    },
+    {
+      "id": 5,
+      "name": "Autumn (Light)",
+      "backgroundColorId": 13,
+      "accentTextColorId": 14,
+      "primaryTextColorId": 15,
+      "secondaryBackgroundColorId": 16
+    },
+    {
+      "id": 6,
+      "name": "Spring (Light)",
+      "backgroundColorId": 17,
+      "accentTextColorId": 18,
+      "primaryTextColorId": 19,
+      "secondaryBackgroundColorId": 20
+    },
+    {
+      "id": 3,
+      "name": "Aubergine (Dark)",
+      "backgroundColorId": 21,
+      "accentTextColorId": 22,
+      "primaryTextColorId": 23,
+      "secondaryBackgroundColorId": 24
     }
   ],
   "colors": [
@@ -863,6 +945,54 @@
     {
       "id": 12,
       "hex": "#ff9d76"
+    },
+    {
+      "id": 13,
+      "hex": "#f9e0ae"
+    },
+    {
+      "id": 14,
+      "hex": "#c24914"
+    },
+    {
+      "id": 15,
+      "hex": "#682c0e"
+    },
+    {
+      "id": 16,
+      "hex": "#fc8621"
+    },
+    {
+      "id": 17,
+      "hex": "#f6f6f6"
+    },
+    {
+      "id": 18,
+      "hex": "#ec4646"
+    },
+    {
+      "id": 19,
+      "hex": "#161d6f"
+    },
+    {
+      "id": 20,
+      "hex": "#c7ffd8"
+    },
+    {
+      "id": 21,
+      "hex": "#312c51"
+    },
+    {
+      "id": 22,
+      "hex": "#b34180"
+    },
+    {
+      "id": 23,
+      "hex": "#f0c38e"
+    },
+    {
+      "id": 24,
+      "hex": "#48426d"
     }
   ]
 }
