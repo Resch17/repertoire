@@ -23,11 +23,13 @@ export const ThemeSelect = () => {
         value={selectedTheme.id}
         onChange={handleControlledInputChange}
       >
-        {themes.map((t) => (
-          <option key={t.id} value={t.id}>
-            {t.name}
-          </option>
-        ))}
+        {themes
+          .sort((a, b) => a.id - b.id)
+          .map((t) => (
+            <option key={t.id} value={t.id}>
+              {t.name}
+            </option>
+          ))}
       </select>
     </div>
   );
