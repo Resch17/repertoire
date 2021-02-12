@@ -165,7 +165,7 @@ export const SongList = () => {
         <div
           className="randomize-button"
           onClick={() => {
-            const random = songs[randomSong()];
+            const random = songs[randomSong() - 1];
             history.push(`/songs/detail/${random.id}`);
           }}
         >
