@@ -1,4 +1,4 @@
-![Repertoire](https://raw.githubusercontent.com/Resch17/repertoire/main/.github/images/repertoirelogo.PNG
+![Repertoire](https://www.aaronresch.com/images/repertoirePoster.png
 )
 - - - -
 
