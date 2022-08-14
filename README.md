@@ -49,21 +49,18 @@ To learn React, check out the [React](https://reactjs.org/) documentation.
 # Tools and Resources
 
 ## Figma
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/320px-Figma-logo.svg.png" width="75" />
 
 Figma was my primary tool for wireframing and mocking up a design for this app. Figma is a free application that allows users to prototype websites and applications with significant focus on UX and UI design.
 
 For more information, check out [Figma](https://www.figma.com/).
 
 ## Font Awesome
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Font_Awesome_5_logo_black.svg/320px-Font_Awesome_5_logo_black.svg.png" />
 
 I used Font Awesome for all icons on this project. Font Awesome is an easy-to-use font and icon toolkit with hundreds of free and thousands of paid icons availble for use on any website or app.
 
 For more information, check out [Font Awesome](https://fontawesome.com/).
 
 ## Material-UI
-<img src="https://material-ui.com/static/logo_raw.svg" width="75">
 
 Material-UI is a popular React UI component framework, based on Google's Material design principles. I used Material-UI for the confirmation dialog boxes in this app.
 
